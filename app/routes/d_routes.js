@@ -56,7 +56,7 @@ const atts = ["location",
 
 module.exports = function(app,db) {	
 	//POST Request
-	app.post('/datapi/data', (req, res) => {
+	app.post('/api/data', (req, res) => {
 		console.log(req.body);
 		if(req.body["teapot"] == passphrase){
 			//Process Request: 
@@ -98,7 +98,7 @@ module.exports = function(app,db) {
 	});
 
 
-	app.get('/datapi', (req, res) =>{
+	app.get('/api', (req, res) =>{
 		console.log(req.body);
 		res.send("Get 200");
 	});
