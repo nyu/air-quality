@@ -5,6 +5,7 @@ import {
   formatWhen,
   formatTemperature,
   formatRelativeHumidity,
+  formatAbsoluteHumidity,
   formatPm,
   formatGas
 } from '../lib/formatters'
@@ -163,6 +164,24 @@ const Page = (props) => {
         <YAxis tickFormatter={formatRelativeHumidity} />
 
         <Tooltip formatter={formatRelativeHumidity} />
+      </LineChart>
+    </ResponsiveContainer>
+
+    <h2>Humidity (Absolute)</h2>
+    <ResponsiveContainer width='100%' height={300}>
+      <LineChart data={data}>
+        <Line
+          type='monotone'
+          dataKey='humidity.absolute'
+          stroke='#8884d8'
+          isAnimationActive={false}
+        />
+
+        <CartesianGrid stroke='#cccccc' />
+        <XAxis dataKey='when' tickFormatter={formatWhen} />
+        <YAxis tickFormatter={formatAbsoluteHumidity} />
+
+        <Tooltip formatter={formatAbsoluteHumidity} />
       </LineChart>
     </ResponsiveContainer>
   </>
