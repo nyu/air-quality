@@ -62,7 +62,9 @@ const pointSchema = {
   }
 }
 
-// Mostly totally unrealistic data
+// Mostly totally unrealistic data,
+// I was originally tring to be realistic
+// but I gave up
 const getFakePoint = () => ({
   when: Date.now(),
   name: 'Pikachu',
@@ -139,7 +141,8 @@ nextApp.prepare().then(async () => {
   })
 
   app.get('*', (req, res) => {
-    return nextHandler(req, res) // Handle all other pages with Next.js
+    // Handle all other pages with Next.js
+    return nextHandler(req, res)
   })
 
   server.listen(port, (error) => {
