@@ -25,7 +25,7 @@ const Page = (props) => {
   const [ data, pushData ] = useData(props.initialData, 40)
   useSocket(pushData)
   
-  return <>
+  return data ? <h1>Loading...</h1> : <>
     <h1>Air Quality Data - {data[0].name}</h1>
 
     <h2>Particulate Matter</h2>
