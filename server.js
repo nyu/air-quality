@@ -11,26 +11,86 @@ if (!key) {
   console.warn('> Warning! You haven\'t specified a secret key; requests won\'t be protected')
 }
 
+// Filters out fields that don't conform to a schema
+const isObject = (thing) => typeof thing === 'object' && !Array.isArray(thing)
 const filterFields = (object, schema) => {
-  if (!object) return object
+  if (!object) return null
   const newObject = {}
+
   for (let key in schema) {
-    if (key in object && typeof object[key] === typeof schema[key]()) {
+    if (!(key in object)) continue
+    if (isObject(schema[key]) && isObject(object[key])) {
+      const filtered = filterFields(object[key], schema[key])
+      if (filtered && filtered !== {}) newObject[key] = filtered
+      continue
+    }
+    if (typeof schema[key] === typeof object[key]) {
       newObject[key] = object[key]
     }
   }
+
   return newObject
 }
+
+// See MEASUREMENTS.md for more information
+const pointSchema = {
+  when: Number,
+  name: String,
+  location: {
+    latitude: Number,
+    longitude: Number
+  },
+  temperature: Number,
+  humidity: {
+    relative: Number,
+    absolute: Number
+  },
+  particulateMatter: {
+    pm25: Number,
+    pm5: Number
+  },
+  gasses: {
+    co: Number,
+    co2: Number,
+    o2: Number,
+    o3: Number,
+    ch4: Number,
+    so2: Number,
+    h2s: Number,
+    no: Number,
+    no2: Number
+  }
+}
+
+// Mostly totally unrealistic data
 const getFakePoint = () => ({
   when: Date.now(),
-  temperature: 60 + Math.floor(Math.random() * 10),
-  humidity: 30 + Math.floor(Math.random() * 20)
+  name: 'Pikachu',
+  location: {
+    latitude: 31.22222,
+    longitude: 121.45806
+  },
+  temperature: 20 + Math.floor(Math.random() * 4),
+  humidity: {
+    relative: 44 + Math.floor(Math.random() * 10),
+    absolute: Math.random() / 2
+  },
+  particulateMatter: {
+    pm25: Math.random(),
+    pm5: Math.random()
+  },
+  gasses: {
+    co: Math.floor(Math.random() * 3),
+    co2: 10 + Math.floor(Math.random() * 3),
+    o2: 12 + Math.floor(Math.random() * 3),
+    o3: 6 + Math.floor(Math.random() * 3),
+    ch4: 4 + Math.floor(Math.random() * 3),
+    so2: 9 + Math.floor(Math.random() * 3),
+    h2s: 8 + Math.floor(Math.random() * 3),
+    no: 6 + Math.floor(Math.random() * 3),
+    no2: 9 + Math.floor(Math.random() * 3)
+  }
 })
-const pointSchema = {
-  when: Number, // This is a Number instead of a Date to prevent issues sending a Date over Socket.io
-  temperature: Number,
-  humidity: Number
-}
 
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
