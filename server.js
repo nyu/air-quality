@@ -21,10 +21,10 @@ const filterFields = (object, schema) => {
     if (!(key in object)) continue
     if (isObject(schema[key]) && isObject(object[key])) {
       const filtered = filterFields(object[key], schema[key])
-      if (filtered && filtered !== {}) newObject[key] = filtered
+      if (filtered && Object.keys(filtered).length) newObject[key] = filtered
       continue
     }
-    if (typeof schema[key] === typeof object[key]) {
+    if (typeof schema[key]() === typeof object[key]) {
       newObject[key] = object[key]
     }
   }
