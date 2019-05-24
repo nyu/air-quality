@@ -136,7 +136,7 @@ nextApp.prepare().then(async () => {
       res.sendStatus(418)
       return
     }
-    await pushPoint(getFakePoint())
+    await pushPoint(filterFields(req.body, pointSchema))
     res.sendStatus(200)
   })
 
