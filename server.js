@@ -1,9 +1,9 @@
 // server.js
 
-const express        = require('express');
-const Sequelize		 = require('sequelize');
-const bodyParser     = require('body-parser');
-const app            = express();
+const express       = require('express');
+const Sequelize	    = require('sequelize');
+const bodyParser    = require('body-parser');
+const app           = express();
 
 const port = 8000;
 
