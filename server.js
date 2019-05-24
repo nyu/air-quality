@@ -140,6 +140,15 @@ nextApp.prepare().then(async () => {
     res.sendStatus(200)
   })
 
+  app.post('/api/fake', async (req, res) => {
+    if (key && req.body.teapot !== key) {
+      res.sendStatus(418)
+      return
+    }
+    await pushPoint(getFakePoint())
+    res.sendStatus(200)
+  })
+
   app.get('*', (req, res) => {
     // Handle all other pages with Next.js
     return nextHandler(req, res)
