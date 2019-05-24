@@ -1,0 +1,24 @@
+# Measurements
+
+- Name: string
+- Location
+  - Latitude: number
+  - Longitude: number
+- Time: unix timestamp
+- Temperature: number (celsius)
+- Humidity:
+  - Relative: number (%)
+  - Absolute: number (mg per cubic cm)
+- Particulate matter
+  - Diameter < 2.5 μm: number (concentration in parts per million)
+  - Diameter < 5 μm: number (concentration in parts per million)
+- Gasses:
+  - CO2 (carbon dioxide): number (parts per million)
+  - CO (carbon monoxide): number (parts per million)
+  - O2 (oxygen): number (parts per million)
+  - O3 (ozone): number (parts per million)
+  - CH4 (methane): number (parts per million)
+  - SO2 (sulfur dioxide): number (parts per million)
+  - H2S (hydrogen sulfide): number (parts per million)
+  - NO (nitrogen monoxide): number (parts per million)
+  - NO2 (nitrogen dioxide): number (parts per million)
