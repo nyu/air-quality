@@ -2,7 +2,6 @@ import getInitial from '../lib/getInitial'
 import useData from '../lib/useData'
 import useSocket from '../lib/useSocket'
 import {
-  formatWhen,
   formatTemperature,
   formatRelativeHumidity,
   formatAbsoluteHumidity,
@@ -10,181 +9,59 @@ import {
   formatGas
 } from '../lib/formatters'
 
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend
-} from 'recharts'
+import Layout from '../components/Layout'
+import Subtitle from '../components/Subtitle'
+import Split from '../components/Split'
+import Pane from '../components/Pane'
+import Chart from '../components/Chart'
+
+import { Line } from 'recharts'
 
 const Page = (props) => {
   const [ data, pushData ] = useData(props.initialData, 40)
   useSocket(pushData)
   
-  return !data.length ? <h1>Loading...</h1> : <>
-    <h1>Air Quality Data - {data[0].name}</h1>
+  return <Layout title={data[0] && data[0].name}>
+    <Subtitle>Particulate Matter</Subtitle>
+    <Chart data={data} formatter={formatPm}>
+      <Line dataKey='particulateMatter.pm25' name='pm2.5' />
+      <Line dataKey='particulateMatter.pm5' name='pm5' />
+    </Chart>
 
-    <h2>Particulate Matter</h2>
-    <ResponsiveContainer width='100%' height={300}>
-      <LineChart data={data}>
-        <Line
-          type='monotone'
-          dataKey='particulateMatter.pm25'
-          name='pm2.5'
-          stroke='#8884d8'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='particulateMatter.pm5'
-          name='pm5'
-          stroke='#82ca9d'
-          isAnimationActive={false}
-        />
+    <Subtitle>Gasses</Subtitle>
+    <Chart data={data} formatter={formatGas}>
+      <Line dataKey='gasses.co2' name='co2' />
+      <Line dataKey='gasses.co' name='co' />
+      <Line dataKey='gasses.o2' name='o2' />
+      <Line dataKey='gasses.o3' name='o3' />
+      <Line dataKey='gasses.ch4' name='ch4' />
+      <Line dataKey='gasses.so2' name='so2' />
+      <Line dataKey='gasses.h2s' name='h2s' />
+      <Line dataKey='gasses.no' name='no' />
+      <Line dataKey='gasses.no2' name='no2' />
+    </Chart>
 
-        <CartesianGrid stroke='#cccccc' />
-        <XAxis dataKey='when' tickFormatter={formatWhen} />
-        <YAxis tickFormatter={formatPm} />
+    <Subtitle>Temperature</Subtitle>
+    <Chart data={data} formatter={formatTemperature}>
+      <Line dataKey='temperature' />
+    </Chart>
 
-        <Tooltip formatter={formatPm} />
-        <Legend verticalAlign='top' height={36}/>
-      </LineChart>
-    </ResponsiveContainer>
+    <Split>
+      <Pane>
+        <Subtitle>Humidity (Relative)</Subtitle>
+        <Chart data={data} formatter={formatRelativeHumidity}>
+          <Line dataKey='humidity.relative' />
+        </Chart>
+      </Pane>
 
-    <h2>Temperature</h2>
-    <ResponsiveContainer width='100%' height={300}>
-      <LineChart data={data}>
-        <Line
-          type='monotone'
-          dataKey='temperature'
-          stroke='#8884d8'
-          isAnimationActive={false}
-        />
-
-        <CartesianGrid stroke='#cccccc' />
-        <XAxis dataKey='when' tickFormatter={formatWhen} />
-        <YAxis tickFormatter={formatTemperature} />
-
-        <Tooltip formatter={formatTemperature} />
-      </LineChart>
-    </ResponsiveContainer>
-
-    <h2>Gasses</h2>
-    <ResponsiveContainer width='100%' height={300}>
-      <LineChart data={data}>
-        <Line
-          type='monotone'
-          dataKey='gasses.co2'
-          name='co2'
-          stroke='#8884d8'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.co'
-          name='co'
-          stroke='#82ca9d'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.o2'
-          name='o2'
-          stroke='#116cf6'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.o3'
-          name='o3'
-          stroke='#d09379'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.ch4'
-          name='ch4'
-          stroke='#840824'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.so2'
-          name='so2'
-          stroke='#59f147'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.h2s'
-          name='h2s'
-          stroke='#ab66f0'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.no'
-          name='no'
-          stroke='#474f3b'
-          isAnimationActive={false}
-        />
-        <Line
-          type='monotone'
-          dataKey='gasses.no2'
-          name='no2'
-          stroke='#250dac'
-          isAnimationActive={false}
-        />
-
-        <CartesianGrid stroke='#cccccc' />
-        <XAxis dataKey='when' tickFormatter={formatWhen} />
-        <YAxis tickFormatter={formatGas} />
-
-        <Tooltip formatter={formatGas} />
-        <Legend verticalAlign='top' height={36}/>
-      </LineChart>
-    </ResponsiveContainer>
-
-    <h2>Humidity (Relative)</h2>
-    <ResponsiveContainer width='100%' height={300}>
-      <LineChart data={data}>
-        <Line
-          type='monotone'
-          dataKey='humidity.relative'
-          stroke='#8884d8'
-          isAnimationActive={false}
-        />
-
-        <CartesianGrid stroke='#cccccc' />
-        <XAxis dataKey='when' tickFormatter={formatWhen} />
-        <YAxis tickFormatter={formatRelativeHumidity} />
-
-        <Tooltip formatter={formatRelativeHumidity} />
-      </LineChart>
-    </ResponsiveContainer>
-
-    <h2>Humidity (Absolute)</h2>
-    <ResponsiveContainer width='100%' height={300}>
-      <LineChart data={data}>
-        <Line
-          type='monotone'
-          dataKey='humidity.absolute'
-          stroke='#8884d8'
-          isAnimationActive={false}
-        />
-
-        <CartesianGrid stroke='#cccccc' />
-        <XAxis dataKey='when' tickFormatter={formatWhen} />
-        <YAxis tickFormatter={formatAbsoluteHumidity} />
-
-        <Tooltip formatter={formatAbsoluteHumidity} />
-      </LineChart>
-    </ResponsiveContainer>
-  </>
+      <Pane>
+        <Subtitle>Humidity (Absolute)</Subtitle>
+        <Chart data={data} formatter={formatAbsoluteHumidity}>
+          <Line dataKey='humidity.absolute' />
+        </Chart>
+      </Pane>
+    </Split>
+  </Layout>
 }
 
 Page.getInitialProps = async () => {
