@@ -1,29 +1,35 @@
-import theme from '../lib/theme'
-import Title from '../components/Title'
+import useTheme from '../lib/useTheme'
 
-export default (props) => (
-  <main>
-    <Title>
-      Air Quality - {props.title}
-    </Title>
-    {props.children}
+import Title from './Title'
+import ThemeToggle from './ThemeToggle'
 
-    <style jsx>{`
-      main {
-        padding: ${theme.spacer}px;
-        max-width: 1600px;
-        margin: 0 auto;
-        color: ${theme.dark.foreground};
-        font-family: 'Lato', sans-serif;
-      }
-    `}</style>
-    <style jsx global>{`
-      @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
-      body {
-        margin: 0;
-        height: 100vh;
-        background: ${theme.dark.background};
-      }
-    `}</style>
-  </main>
-)
+export default (props) => {
+  const theme = useTheme()
+  return (
+    <main>
+      <Title>
+        <ThemeToggle />
+        Air Quality - {props.title}
+      </Title>
+      {props.children}
+
+      <style jsx>{`
+        main {
+          padding: 16px;
+          max-width: 1600px;
+          margin: 0 auto;
+          color: ${theme.foreground};
+          font-family: 'Lato', sans-serif;
+        }
+      `}</style>
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+        body {
+          margin: 0;
+          height: 100vh;
+          background: ${theme.background};
+        }
+      `}</style>
+    </main>
+  )
+}

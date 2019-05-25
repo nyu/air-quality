@@ -1,4 +1,4 @@
-import theme from '../lib/theme'
+import useTheme from '../lib/useTheme'
 import { formatWhen } from '../lib/formatters'
 
 import { Children, cloneElement } from 'react'
@@ -12,30 +12,34 @@ import {
   Legend
 } from 'recharts'
 
-export default (props) => (
-  <ResponsiveContainer width='100%' height={460}>
-    <LineChart data={props.data}>
-      {Children.map(props.children, (child, index) => cloneElement(child, {
-        type: 'monotone',
-        isAnimationActive: false,
-        stroke: theme.dark.highlights[index],
-        dot: { fill: theme.dark.background },
-        strokeWidth: 2
-      }))}
+export default (props) => {
+  const theme = useTheme()
+  return (
+    <ResponsiveContainer width='100%' height={460}>
+      <LineChart data={props.data}>
+        {Children.map(props.children, (child, index) => cloneElement(child, {
+          type: 'monotone',
+          isAnimationActive: false,
+          stroke: theme.highlights[index],
+          dot: { fill: theme.background },
+          activeDot: { stroke: theme.foreground },
+          strokeWidth: 2
+        }))}
 
-      <CartesianGrid stroke={theme.dark.lines} />
-      <XAxis stroke={theme.dark.foreground} dataKey='when' tickFormatter={formatWhen} />
-      <YAxis stroke={theme.dark.foreground} tickFormatter={props.formatter} />
+        <CartesianGrid stroke={theme.lines} />
+        <XAxis stroke={theme.foreground} dataKey='when' tickFormatter={formatWhen} />
+        <YAxis stroke={theme.foreground} tickFormatter={props.formatter} />
 
-      <Tooltip
-        formatter={props.formatter}
-        separator=': '
-        contentStyle={{
-          background: theme.dark.background,
-          border: `1px solid ${theme.dark.lines}`
-        }}
-      />
-      {Children.count(props.children) > 1 && <Legend verticalAlign='top' height={36}/>}
-    </LineChart>
-  </ResponsiveContainer>
-)
+        <Tooltip
+          formatter={props.formatter}
+          separator=': '
+          contentStyle={{
+            background: theme.background,
+            border: `1px solid ${theme.lines}`
+          }}
+        />
+        {Children.count(props.children) > 1 && <Legend verticalAlign='top' height={36}/>}
+      </LineChart>
+    </ResponsiveContainer>
+  )
+}

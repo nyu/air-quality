@@ -1,5 +1,3 @@
-import theme from '../lib/theme'
-
 export default (props) => (
   <h2>
     {props.children}
@@ -7,9 +5,9 @@ export default (props) => (
     <style jsx>{`
       h2 {
         font-size: 1.65em;
-        font-weight: ${theme.headingWeight};
-        margin-top: ${theme.spacer * 1.4}px;
-        margin-bottom: ${theme.spacer}px;
+        font-weight: 700;
+        margin-top: 24px;
+        margin-bottom: 16px;
       }
     `}</style>
   </h2>
