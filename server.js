@@ -163,10 +163,10 @@ nextApp.prepare().then(async () => {
   server.listen(port, (error) => {
     if (error) throw error
     if (dev) {
-      // Push fake data every 2 seconds in development
+      // Push fake data every 1 second in development
       setInterval(async () => {
         await pushPoint(getFakePoint())
-      }, 2000)
+      }, 1000)
     }
     console.log(`> Ready on http://localhost:${port}`)
   })
