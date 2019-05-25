@@ -19,11 +19,20 @@ export default (props) => {
           max-width: 1600px;
           margin: 0 auto;
           color: ${theme.foreground};
-          font-family: 'Lato', sans-serif;
+          font-family: 'Circular Std', sans-serif;
         }
       `}</style>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+        @font-face {
+          font-family: 'Circular Std';
+          font-weight: 400;
+          src: url('/static/CircularStd-Book.ttf');
+        }
+        @font-face {
+          font-family: 'Circular Std';
+          font-weight: 700;
+          src: url('/static/CircularStd-Bold.ttf');
+        }
         body {
           margin: 0;
           height: 100vh;

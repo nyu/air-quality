@@ -5,7 +5,6 @@ export default (props) => (
     <style jsx>{`
       h1 {
         font-size: 2.25em;
-        font-weight: 700;
       }
     `}</style>
   </h1>
