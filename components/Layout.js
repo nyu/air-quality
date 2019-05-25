@@ -37,6 +37,7 @@ export default (props) => {
           margin: 0;
           height: 100vh;
           background: ${theme.background};
+          overflow-y: scroll;
         }
       `}</style>
     </main>

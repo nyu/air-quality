@@ -68,7 +68,7 @@ const pointSchema = {
 // but I gave up
 const getFakePoint = () => ({
   when: Date.now(),
-  name: 'Pikachu',
+  name: 'pikachu',
   location: {
     latitude: 31.22222,
     longitude: 121.45806

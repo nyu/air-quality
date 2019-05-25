@@ -16,7 +16,7 @@ export default (props) => {
   const theme = useTheme()
   return (
     <ResponsiveContainer width='100%' height={460}>
-      <LineChart data={props.data}>
+      <LineChart data={[ ...props.data ]}>
         {Children.map(props.children, (child, index) => cloneElement(child, {
           type: 'monotone',
           isAnimationActive: false,

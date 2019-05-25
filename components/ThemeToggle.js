@@ -11,7 +11,7 @@ export default () => {
           height: 30px;
           margin-right: 16px;
           border: none;
-          background: ${theme.toggleColor};
+          background: ${theme.button.background};
           cursor: pointer;
         }
       `}</style>

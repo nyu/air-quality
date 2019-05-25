@@ -4,7 +4,6 @@ export default (props) => (
     <style jsx>{`
       div {
         flex: 1;
-        margin-right: 16px;
       }
     `}</style>
   </div>
