@@ -3,7 +3,9 @@ export default (props) => (
     {props.children}
     <style jsx>{`
       div {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+        grid-gap: 32px;
       }
     `}</style>
   </div>

@@ -8,7 +8,7 @@ import {
 } from '../lib/formatters'
 
 import Subtitle from '../components/Subtitle'
-import Split from '../components/Split'
+import Grid from '../components/Grid'
 import Pane from '../components/Pane'
 import Chart from '../components/Chart'
 import Text from '../components/Text'
@@ -18,9 +18,9 @@ import { Line } from 'recharts'
 export default (props) => (
   <>
     <Text>
-      Location: {props.data[0] && formatLocation(props.data[0].location.latitude, props.data[0].location.longitude)}
+      Location: {formatLocation(props.data[0].location.latitude, props.data[0].location.longitude)}
       <br />
-      Time zone: {props.data[0] && props.data[0].timezones.join(' or ')}
+      Time zone: {props.data[0].timezones.join(' or ')}
     </Text>
 
     <Subtitle>Particulate Matter</Subtitle>
@@ -47,7 +47,7 @@ export default (props) => (
       <Line dataKey='temperature' />
     </Chart>
 
-    <Split>
+    <Grid>
       <Pane>
         <Subtitle>Humidity (Relative)</Subtitle>
         <Chart data={props.data} formatter={formatRelativeHumidity}>
@@ -61,6 +61,6 @@ export default (props) => (
           <Line dataKey='humidity.absolute' />
         </Chart>
       </Pane>
-    </Split>
+    </Grid>
   </>
 )

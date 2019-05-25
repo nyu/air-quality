@@ -7,6 +7,7 @@ import Theme from '../components/Theme'
 import Layout from '../components/Layout'
 import Tabs from '../components/Tabs'
 
+import OverviewView from '../views/Overview'
 import DetailView from '../views/Detail'
 
 import { useState } from 'react'
@@ -14,7 +15,7 @@ import cookies from 'next-cookies'
 
 const View = (props) => {
   if (props.tab === 'overview') {
-    return null
+    return <OverviewView data={props.data} />
   } else {
     return <DetailView data={props.data[props.tab]} />
   }

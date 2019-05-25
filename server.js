@@ -68,7 +68,7 @@ const pointSchema = {
 // but I gave up
 const getFakePoint = () => ({
   when: Date.now(),
-  name: 'pikachu',
+  name: Math.random() < 0.5 ? 'pikachu' : 'charizard',
   location: {
     latitude: 31.22222,
     longitude: 121.45806
@@ -163,10 +163,10 @@ nextApp.prepare().then(async () => {
   server.listen(port, (error) => {
     if (error) throw error
     if (dev) {
-      // Push fake data every 10 seconds in development
+      // Push fake data every 2 seconds in development
       setInterval(async () => {
         await pushPoint(getFakePoint())
-      }, 10000)
+      }, 2000)
     }
     console.log(`> Ready on http://localhost:${port}`)
   })
