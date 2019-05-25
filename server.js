@@ -4,6 +4,7 @@ const app = require('express')()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const next = require('next')
+const geoTz = require('geo-tz')
 
 const dev = process.env.NODE_ENV !== 'production'
 const key = process.env.SECRET_KEY
@@ -98,12 +99,16 @@ const mongoose = require('mongoose')
 mongoose.Promise = Promise
 const Point = mongoose.model('Point', pointSchema)
 
+const addTimezones = (data) => ({
+  ...data,
+  timezones: geoTz(data.location.latitude, data.location.longitude)
+})
 const pushPoint = dev ? (data) => {
-  io.emit('data', data)
+  io.emit('data', addTimezones(data))
 } : async (data) => {
   const point = new Point(data)
   await point.save()
-  io.emit('data', data)
+  io.emit('data', addTimezones(data))
 }
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -124,11 +129,12 @@ nextApp.prepare().then(async () => {
 
   app.get('/api/initial', async (req, res) => {
     if (dev) {
-      res.json(getFakePoint())
+      res.json(addTimezones(getFakePoint()))
       return
     }
     const point = await Point.findOne().sort('-when')
-    res.json(filterFields(point, pointSchema))
+    const filtered = filterFields(point, pointSchema)
+    res.json(addTimezones(filtered))
   })
 
   app.post('/api/push', async (req, res) => {

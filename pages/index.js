@@ -6,7 +6,8 @@ import {
   formatRelativeHumidity,
   formatAbsoluteHumidity,
   formatPm,
-  formatGas
+  formatGas,
+  formatLocation
 } from '../lib/formatters'
 
 import Theme from '../components/Theme'
@@ -15,6 +16,7 @@ import Subtitle from '../components/Subtitle'
 import Split from '../components/Split'
 import Pane from '../components/Pane'
 import Chart from '../components/Chart'
+import Text from '../components/Text'
 
 import cookies from 'next-cookies'
 import { Line } from 'recharts'
@@ -26,6 +28,12 @@ const Page = (props) => {
   return (
     <Theme defaultDark={props.defaultDark}>
       <Layout title={data[0] && data[0].name}>
+        <Text>
+          Location: {data[0] && formatLocation(data[0].location.latitude, data[0].location.longitude)}
+          <br />
+          Time zone: {data[0] && data[0].timezones.join(' or ')}
+        </Text>
+
         <Subtitle>Particulate Matter</Subtitle>
         <Chart data={data} formatter={formatPm}>
           <Line dataKey='particulateMatter.pm25' name='pm2.5' />
