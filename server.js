@@ -66,34 +66,39 @@ const pointSchema = {
 // Mostly totally unrealistic data,
 // I was originally tring to be realistic
 // but I gave up
-const getFakePoint = () => ({
-  when: Date.now(),
-  name: Math.random() < 0.5 ? 'pikachu' : 'charizard',
-  location: {
-    latitude: 31.22222,
-    longitude: 121.45806
-  },
-  temperature: 20 + Math.floor(Math.random() * 4),
-  humidity: {
-    relative: 44 + Math.floor(Math.random() * 10),
-    absolute: Math.random() / 2
-  },
-  particulateMatter: {
-    pm25: Math.random(),
-    pm5: Math.random()
-  },
-  gasses: {
-    co: Math.floor(Math.random() * 3),
-    co2: 10 + Math.floor(Math.random() * 3),
-    o2: 12 + Math.floor(Math.random() * 3),
-    o3: 6 + Math.floor(Math.random() * 3),
-    ch4: 4 + Math.floor(Math.random() * 3),
-    so2: 9 + Math.floor(Math.random() * 3),
-    h2s: 8 + Math.floor(Math.random() * 3),
-    no: 6 + Math.floor(Math.random() * 3),
-    no2: 9 + Math.floor(Math.random() * 3)
+let lastPoint = null
+const getFakePoint = () => {
+  const thisPoint = {
+    when: Date.now(),
+    name: 'Pikachu',
+    location: {
+      latitude: 31.22222,
+      longitude: 121.45806
+    },
+    temperature: 20 + Math.floor(Math.random() * 4),
+    humidity: {
+      relative: 44 + Math.floor(Math.random() * 10),
+      absolute: Math.random() / 2
+    },
+    particulateMatter: {
+      pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) / 4 : Math.random() * 4,
+      pm5: lastPoint ? lastPoint.particulateMatter.pm5 + (Math.random() - 0.5) / 4 : Math.random() * 4
+    },
+    gasses: {
+      co: Math.floor(Math.random() * 3),
+      co2: 10 + Math.floor(Math.random() * 3),
+      o2: 12 + Math.floor(Math.random() * 3),
+      o3: 6 + Math.floor(Math.random() * 3),
+      ch4: 4 + Math.floor(Math.random() * 3),
+      so2: 9 + Math.floor(Math.random() * 3),
+      h2s: 8 + Math.floor(Math.random() * 3),
+      no: 6 + Math.floor(Math.random() * 3),
+      no2: 9 + Math.floor(Math.random() * 3)
+    }
   }
-})
+  lastPoint = thisPoint
+  return thisPoint
+}
 
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
@@ -129,7 +134,7 @@ nextApp.prepare().then(async () => {
 
   app.get('/api/initial', async (req, res) => {
     if (dev) {
-      res.json(addTimezones(getFakePoint()))
+      res.json(addTimezones(lastPoint || getFakePoint()))
       return
     }
     const point = await Point.findOne().sort('-when')
