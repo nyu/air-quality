@@ -21,8 +21,8 @@ export default (props) => {
           type: 'monotone',
           isAnimationActive: false,
           stroke: theme.highlights[index],
-          dot: { fill: theme.background },
-          activeDot: { stroke: theme.foreground },
+          dot: { fill: 'transparent', stroke: 'transparent' },
+          activeDot: { stroke: 'transparent' },
           strokeWidth: 2
         }))}
 
