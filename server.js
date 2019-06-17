@@ -143,6 +143,7 @@ nextApp.prepare().then(async () => {
       return
     }
     const point = await Point.findOne().sort('-when')
+    if (!point) return res.end()
     const filtered = filterFields(point, pointSchema)
     res.json(addTimezones(filtered))
   })
