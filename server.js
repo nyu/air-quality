@@ -126,8 +126,13 @@ io.on('connection', () => {
 
 nextApp.prepare().then(async () => {
   if (!dev) {
-    await mongoose.connect(`mongodb://mongo:27017/airquality`, { useNewUrlParser: true })
-    console.log('> Connected to the database')
+    try {
+      await mongoose.connect(`mongodb://mongo:27017/airquality`, { useNewUrlParser: true })
+      console.log('> Connected to the database')
+    } catch(error) {
+      console.error(error)
+      process.exit(1)
+    }
   }
 
   app.use(require('body-parser').json())
