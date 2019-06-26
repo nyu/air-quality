@@ -81,19 +81,19 @@ const getFakePoint = () => {
       absolute: Math.random() / 2
     },
     particulateMatter: {
-      pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) : Math.random() * 4,
+      pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) : Math.random() * 3,
       pm10: lastPoint ? lastPoint.particulateMatter.pm10 + (Math.random() - 0.5) / 3 : Math.random() * 4
     },
     gasses: {
       co: Math.floor(Math.random() * 3),
-      co2: 10 + Math.floor(Math.random() * 3),
-      o2: 12 + Math.floor(Math.random() * 3),
-      o3: 6 + Math.floor(Math.random() * 3),
-      ch4: 4 + Math.floor(Math.random() * 3),
-      so2: 9 + Math.floor(Math.random() * 3),
-      h2s: 8 + Math.floor(Math.random() * 3),
-      no: 6 + Math.floor(Math.random() * 3),
-      no2: 9 + Math.floor(Math.random() * 3)
+      co2: lastPoint ? lastPoint.particulateMatter.co2 + (Math.random() - 0.5)* 2  : Math.random() * 10,
+      o2:  lastPoint ? lastPoint.particulateMatter.o2 + (Math.random() - 0.5)* 0.4 : Math.random() * 15,
+      o3:  lastPoint ? lastPoint.particulateMatter.o3 + (Math.random() - 0.5) *  1 : Math.random() * 6,
+      ch4: lastPoint ? lastPoint.particulateMatter.ch4 + (Math.random() - 0.5)* 2  : Math.random() * 9,
+      so2: lastPoint ? lastPoint.particulateMatter.so2 + (Math.random() - 0.5)/ 6  : Math.random() * 8,
+      h2s: lastPoint ? lastPoint.particulateMatter.h2s + (Math.random() - 0.5)* 2  : Math.random() * 2,
+      no:  lastPoint ? lastPoint.particulateMatter.no + (Math.random() - 0.5)* 1   : Math.random() * 1,
+      no2: lastPoint ? lastPoint.particulateMatter.no2 + (Math.random() - 0.5)/ 4  : Math.random() * 4,
     }
   }
   lastPoint = thisPoint
