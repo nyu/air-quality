@@ -18,7 +18,7 @@ export default (props) => {
     <ResponsiveContainer width='100%' height={460}>
       <LineChart data={[ ...props.data ]}>
         {Children.map(props.children, (child, index) => cloneElement(child, {
-          type: 'monotone',
+          type: 'linear',
           isAnimationActive: false,
           stroke: theme.highlights[index],
           dot: { fill: 'transparent', stroke: 'transparent' },
@@ -29,8 +29,6 @@ export default (props) => {
         <CartesianGrid stroke={theme.lines} />
         <XAxis stroke={theme.foreground} dataKey='when' tickFormatter={formatWhen} />
         <YAxis stroke={theme.foreground} tickFormatter={props.formatter} />
-
-        <Line type="linear"/> //may break
 
         <Tooltip
           formatter={props.formatter}
