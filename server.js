@@ -81,8 +81,8 @@ const getFakePoint = () => {
       absolute: Math.random() / 2
     },
     particulateMatter: {
-      pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) / 4 : Math.random() * 4,
-      pm10: lastPoint ? lastPoint.particulateMatter.pm10 + (Math.random() - 0.5) / 4 : Math.random() * 4
+      pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) : Math.random() * 4,
+      pm10: lastPoint ? lastPoint.particulateMatter.pm10 + (Math.random() - 0.5) / 3 : Math.random() * 4
     },
     gasses: {
       co: Math.floor(Math.random() * 3),
