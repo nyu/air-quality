@@ -22,7 +22,7 @@ export default (props) => (
 
         <Chart data={props.data[key]} formatter={formatPm}>
           <Line dataKey='particulateMatter.pm25' name='pm2.5' />
-          <Line dataKey='particulateMatter.pm5' name='pm5' />
+          <Line dataKey='particulateMatter.pm10' name='pm10' />
         </Chart>
       </Pane>
     ))}

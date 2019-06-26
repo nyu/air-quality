@@ -42,7 +42,7 @@ This results in the below schema for sending and storing data.
   },
   particulateMatter: {
     pm25: Number,
-    pm5: Number
+    pm10: Number
   },
   gasses: {
     co: Number,

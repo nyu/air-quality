@@ -48,7 +48,7 @@ const pointSchema = {
   },
   particulateMatter: {
     pm25: Number,
-    pm5: Number
+    pm10: Number
   },
   gasses: {
     co: Number,
@@ -82,7 +82,7 @@ const getFakePoint = () => {
     },
     particulateMatter: {
       pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) / 4 : Math.random() * 4,
-      pm5: lastPoint ? lastPoint.particulateMatter.pm5 + (Math.random() - 0.5) / 4 : Math.random() * 4
+      pm10: lastPoint ? lastPoint.particulateMatter.pm10 + (Math.random() - 0.5) / 4 : Math.random() * 4
     },
     gasses: {
       co: Math.floor(Math.random() * 3),
