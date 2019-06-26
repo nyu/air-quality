@@ -30,6 +30,8 @@ export default (props) => {
         <XAxis stroke={theme.foreground} dataKey='when' tickFormatter={formatWhen} />
         <YAxis stroke={theme.foreground} tickFormatter={props.formatter} />
 
+        <Line type="linear"/> //may break
+
         <Tooltip
           formatter={props.formatter}
           separator=': '
