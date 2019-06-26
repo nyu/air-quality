@@ -93,7 +93,7 @@ const getFakePoint = () => {
       so2: lastPoint ? lastPoint.particulateMatter.so2 + (Math.random() - 0.5)/ 6  : Math.random() * 8,
       h2s: lastPoint ? lastPoint.particulateMatter.h2s + (Math.random() - 0.5)* 2  : Math.random() * 2,
       no:  lastPoint ? lastPoint.particulateMatter.no + (Math.random() - 0.5)* 1   : Math.random() * 1,
-      no2: lastPoint ? lastPoint.particulateMatter.no2 + (Math.random() - 0.5)/ 4  : Math.random() * 4,
+      no2: lastPoint ? lastPoint.particulateMatter.no2 + (Math.random() - 0.5)/ 4  : Math.random() * 4
     }
   }
   lastPoint = thisPoint
