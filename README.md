@@ -12,7 +12,7 @@ This is how to run the code locally for development. All data will be mocked.
 - [Yarn](https://yarnpkg.com/)
 - `$ yarn` to install packages
 
-## Running
+### Running
 
 Just run the following command to start a development server with live-reload. **Note that the server must be manually restarted after changes to the backend.**
 
