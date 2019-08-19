@@ -33,6 +33,9 @@ const filterFields = (object, schema) => {
   return newObject
 }
 
+// Util for async delay
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 // See MEASUREMENTS.md for more information
 const pointSchema = {
   when: Number,
@@ -102,7 +105,7 @@ const pushPoint = dev ? (data) => {
   io.emit('data', addTimezones(data))
 }
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = 3000
 const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
 
@@ -112,12 +115,16 @@ io.on('connection', () => {
 
 nextApp.prepare().then(async () => {
   if (!dev) {
-    try {
-      await mongoose.connect(`mongodb://mongo:27017/airquality`, { useNewUrlParser: true })
-      console.log('> Connected to the database')
-    } catch(error) {
-      console.error(error)
-      process.exit(1)
+    mongoose.connection.on('connected', () => console.log('> Connected to the database'))
+    while(true) {
+      try {
+        await mongoose.connect(`mongodb://mongo:27017/airquality`, { useNewUrlParser: true })
+        break
+      } catch(error) {
+        console.error(error)
+        await delay(2000)
+        console.log('> Trying to connect again...')
+      }
     }
   }
 

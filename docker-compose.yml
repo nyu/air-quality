@@ -7,14 +7,14 @@ services:
     volumes: 
       - /opt/airquality/db:/data/db
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 3001:8081
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 3001:8081
 
   server:
     build: .
     restart: always
     ports:
-      - 80:3000
+      - 3000:3000
