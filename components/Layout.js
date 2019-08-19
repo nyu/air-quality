@@ -40,6 +40,10 @@ export default (props) => {
           overflow-y: scroll;
           overflow-x: hidden;
         }
+        ::selection {
+          background: ${theme.button.background};
+          color: ${theme.button.foreground};
+        }
       `}</style>
     </main>
   )
