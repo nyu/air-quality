@@ -42,23 +42,16 @@ const pointSchema = {
     longitude: Number
   },
   temperature: Number,
-  humidity: {
-    relative: Number,
-    absolute: Number
-  },
+  humidity: Number,
   particulateMatter: {
+    pm1: Number,
     pm25: Number,
     pm10: Number
   },
   gasses: {
     co: Number,
-    co2: Number,
-    o2: Number,
     o3: Number,
-    ch4: Number,
     so2: Number,
-    h2s: Number,
-    no: Number,
     no2: Number
   }
 }
@@ -76,23 +69,16 @@ const getFakePoint = () => {
       longitude: 121.45806
     },
     temperature: 20 + Math.floor(Math.random() * 4),
-    humidity: {
-      relative: 44 + Math.floor(Math.random() * 10),
-      absolute: Math.random() / 2
-    },
+    humidity: 44 + Math.floor(Math.random() * 10),
     particulateMatter: {
+      pm1: lastPoint ? lastPoint.particulateMatter.pm1 + (Math.random() - 0.5) : Math.random() * 2,
       pm25: lastPoint ? lastPoint.particulateMatter.pm25 + (Math.random() - 0.5) : Math.random() * 3,
       pm10: lastPoint ? lastPoint.particulateMatter.pm10 + (Math.random() - 0.5) / 3 : Math.random() * 4
     },
     gasses: {
       co: Math.floor(Math.random() * 3),
-      co2: lastPoint ? lastPoint.gasses.co2 + (Math.random() - 0.5)* 2  : Math.random() * 10,
-      o2:  lastPoint ? lastPoint.gasses.o2 + (Math.random() - 0.5)* 0.4 : Math.random() * 15,
       o3:  lastPoint ? lastPoint.gasses.o3 + (Math.random() - 0.5) *  1 : Math.random() * 6,
-      ch4: lastPoint ? lastPoint.gasses.ch4 + (Math.random() - 0.5)* 2  : Math.random() * 9,
       so2: lastPoint ? lastPoint.gasses.so2 + (Math.random() - 0.5)/ 6  : Math.random() * 8,
-      h2s: lastPoint ? lastPoint.gasses.h2s + (Math.random() - 0.5)* 2  : Math.random() * 2,
-      no:  lastPoint ? lastPoint.gasses.no + (Math.random() - 0.5)* 1   : Math.random() * 1,
       no2: lastPoint ? lastPoint.gasses.no2 + (Math.random() - 0.5)/ 4  : Math.random() * 4
     }
   }

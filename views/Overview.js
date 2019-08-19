@@ -21,6 +21,7 @@ export default (props) => (
         </Text>
 
         <Chart data={props.data[key]} formatter={formatPm}>
+          <Line dataKey='particulateMatter.pm1' name='pm1' />
           <Line dataKey='particulateMatter.pm25' name='pm2.5' />
           <Line dataKey='particulateMatter.pm10' name='pm10' />
         </Chart>

@@ -1,7 +1,6 @@
 import {
   formatTemperature,
-  formatRelativeHumidity,
-  formatAbsoluteHumidity,
+  formatHumidity,
   formatPm,
   formatGas,
   formatLocation
@@ -25,6 +24,7 @@ export default (props) => (
 
     <Subtitle>Particulate Matter</Subtitle>
     <Chart data={props.data} formatter={formatPm}>
+      <Line dataKey='particulateMatter.pm1' name='pm1' />
       <Line dataKey='particulateMatter.pm25' name='pm2.5' />
       <Line dataKey='particulateMatter.pm10' name='pm10' />
     </Chart>
@@ -32,33 +32,23 @@ export default (props) => (
     <Subtitle>Gasses</Subtitle>
     <Chart data={props.data} formatter={formatGas}>
       <Line dataKey='gasses.co2' name='co2' />
-      <Line dataKey='gasses.co' name='co' />
-      <Line dataKey='gasses.o2' name='o2' />
       <Line dataKey='gasses.o3' name='o3' />
-      <Line dataKey='gasses.ch4' name='ch4' />
       <Line dataKey='gasses.so2' name='so2' />
-      <Line dataKey='gasses.h2s' name='h2s' />
-      <Line dataKey='gasses.no' name='no' />
       <Line dataKey='gasses.no2' name='no2' />
-    </Chart>
-
-    <Subtitle>Temperature</Subtitle>
-    <Chart data={props.data} formatter={formatTemperature}>
-      <Line dataKey='temperature' />
     </Chart>
 
     <Grid>
       <Pane>
-        <Subtitle>Humidity (Relative)</Subtitle>
-        <Chart data={props.data} formatter={formatRelativeHumidity}>
-          <Line dataKey='humidity.relative' />
+        <Subtitle>Temperature</Subtitle>
+        <Chart data={props.data} formatter={formatTemperature}>
+          <Line dataKey='temperature' />
         </Chart>
       </Pane>
 
       <Pane>
-        <Subtitle>Humidity (Absolute)</Subtitle>
-        <Chart data={props.data} formatter={formatAbsoluteHumidity}>
-          <Line dataKey='humidity.absolute' />
+        <Subtitle>Relative Humidity</Subtitle>
+        <Chart data={props.data} formatter={formatHumidity}>
+          <Line dataKey='humidity' />
         </Chart>
       </Pane>
     </Grid>
