@@ -13,7 +13,7 @@ These are all the things that will be measured and their units.
   - Absolute: number (kg per cubic m)
 - Particulate matter
   - Diameter < 2.5 μm: number (concentration in parts per million)
-  - Diameter < 5 μm: number (concentration in parts per million)
+  - Diameter < 10 μm: number (concentration in parts per million)
 - Gasses:
   - CO2 (carbon dioxide): number (parts per million)
   - CO (carbon monoxide): number (parts per million)
