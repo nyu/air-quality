@@ -135,10 +135,10 @@ nextApp.prepare().then(async () => {
       res.json(addTimezones(lastPoint || getFakePoint()))
       return
     }
-    const point = await Point.findOne().sort('-when')
-    if (!point) return res.send('null')
-    const filtered = filterFields(point, pointSchema)
-    res.json(addTimezones(filtered))
+    const points = (await Point.find().sort('when').limit(120))
+      .map((point) => addTimezones(filterFields(point, pointSchema)))
+    console.log(points[points.length - 1].when)
+    res.json(points)
   })
 
   app.post('/api/push', async (req, res) => {
