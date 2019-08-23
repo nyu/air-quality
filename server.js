@@ -66,7 +66,7 @@ let lastPoint = null
 const getFakePoint = () => {
   const thisPoint = {
     when: Date.now(),
-    name: 'Pikachu',
+    name: 'Academic Center',
     location: {
       latitude: 31.22222,
       longitude: 121.45806
