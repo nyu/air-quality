@@ -1,0 +1,21 @@
+{
+  when:1566564858011,
+  name: Test,
+  location: {
+    latitude:  31.225973,
+    longitude: 121.534053
+  },
+  temperature: 100,
+  humidity: 100,
+  particulateMatter: {
+    pm1: 100,
+    pm25: 100,
+    pm10: 100
+  },
+  gasses: {
+    co: 100,
+    o3: 100,
+    so2: 100,
+    no2: 100
+  }
+}
