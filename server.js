@@ -137,7 +137,6 @@ nextApp.prepare().then(async () => {
     }
     const points = (await Point.find().sort('when').limit(120))
       .map((point) => addTimezones(filterFields(point, pointSchema)))
-    console.log(points[points.length - 1].when)
     res.json(points)
   })
 
