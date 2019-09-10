@@ -66,7 +66,7 @@ let lastPoint = null
 const getFakePoint = () => {
   const thisPoint = {
     when: Date.now(),
-    name: 'Pikachu',
+    name: 'Academic Center',
     location: {
       latitude: 31.22222,
       longitude: 121.45806
@@ -141,10 +141,10 @@ nextApp.prepare().then(async () => {
   })
 
   app.post('/api/push', async (req, res) => {
-    if (key && req.body.teapot !== key) {
-      res.sendStatus(418)
-      return
-    }
+    // if (key && req.body.teapot !== key) {
+    //   res.sendStatus(418)
+    //   return
+    // }
     await pushPoint(filterFields(req.body, pointSchema))
     res.sendStatus(200)
   })
