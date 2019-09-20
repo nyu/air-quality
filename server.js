@@ -145,10 +145,10 @@ nextApp.prepare().then(async () => {
   })
 
   app.post('/api/push', async (req, res) => {
-    // if (key && req.body.teapot !== key) {
-    //   res.sendStatus(418)
-    //   return
-    // }
+    if (key && req.body.teapot !== key) {
+      res.sendStatus(418)
+      return
+    }
     await pushPoint(filterFields(req.body, pointSchema))
     res.sendStatus(200)
   })
