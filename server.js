@@ -80,9 +80,9 @@ const getFakePoint = () => {
     },
     gasses: {
       co: Math.floor(Math.random() * 3),
-      o3:  lastPoint ? lastPoint.gasses.o3 + (Math.random() - 0.5) *  1 : Math.random() * 6,
-      so2: lastPoint ? lastPoint.gasses.so2 + (Math.random() - 0.5)/ 6  : Math.random() * 8,
-      no2: lastPoint ? lastPoint.gasses.no2 + (Math.random() - 0.5)/ 4  : Math.random() * 4
+      o3: lastPoint ? lastPoint.gasses.o3 + (Math.random() - 0.5) * 1 : Math.random() * 6,
+      so2: lastPoint ? lastPoint.gasses.so2 + (Math.random() - 0.5) / 6 : Math.random() * 8,
+      no2: lastPoint ? lastPoint.gasses.no2 + (Math.random() - 0.5) / 4 : Math.random() * 4
     }
   }
   lastPoint = thisPoint
@@ -116,11 +116,11 @@ io.on('connection', () => {
 nextApp.prepare().then(async () => {
   if (!dev) {
     mongoose.connection.on('connected', () => console.log('> Connected to the database'))
-    while(true) {
+    while (true) {
       try {
         await mongoose.connect(`mongodb://mongo:27017/airquality`, { useNewUrlParser: true })
         break
-      } catch(error) {
+      } catch (error) {
         console.error(error)
         await delay(2000)
         console.log('> Trying to connect again...')
@@ -135,9 +135,13 @@ nextApp.prepare().then(async () => {
       res.json(addTimezones(lastPoint || getFakePoint()))
       return
     }
-    const points = (await Point.find().sort('when').limit(120))
-      .map((point) => addTimezones(filterFields(point, pointSchema)))
-    res.json(points)
+    try {
+      const points = (await Point.find().sort('-when').limit(120))
+        .map((point) => addTimezones(filterFields(point, pointSchema)))
+      res.json(points)
+    } catch (error) {
+      res.json([])
+    }
   })
 
   app.post('/api/push', async (req, res) => {
