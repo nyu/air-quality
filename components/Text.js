@@ -4,6 +4,7 @@ export default (props) => (
     <style jsx>{`
       p {
         margin: 0;
+        margin-bottom: 12px;
       }
     `}</style>
   </p>
