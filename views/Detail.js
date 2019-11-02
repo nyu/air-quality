@@ -9,7 +9,7 @@ import {
 import Subtitle from '../components/Subtitle'
 import Grid from '../components/Grid'
 import Pane from '../components/Pane'
-import Chart from '../components/Chart'
+import Chart from '../comgassponents/Chart'
 import Text from '../components/Text'
 
 import { Line } from 'recharts'
@@ -29,7 +29,7 @@ export default (props) => (
       <Line dataKey='particulateMatter.pm10' name='pm10' />
     </Chart>
 
-    <Subtitle>Gasses</Subtitle>
+    <Subtitle>Gases</Subtitle>
     <Chart data={props.data} formatter={formatGas}>
       <Line dataKey='gasses.co2' name='co2' />
       <Line dataKey='gasses.o3' name='o3' />
