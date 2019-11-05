@@ -1,12 +1,6 @@
 version: '3'
 
 services:
-  mongo:
-    image: mongo:latest
-    restart: always
-    volumes: 
-      - /opt/airquality/db:/data/db
-
   server:
     build: .
     restart: always

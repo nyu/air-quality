@@ -1,12 +1,10 @@
-export default (props) => (
+export default ({ children }) => (
   <h2>
-    {props.children}
-    
+    {children}
+
     <style jsx>{`
       h2 {
-        font-size: 1.65em;
-        margin-top: 24px;
-        margin-bottom: 16px;
+        font-size: 1.5em;
       }
     `}</style>
   </h2>
