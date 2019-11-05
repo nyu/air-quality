@@ -1,25 +1,19 @@
-import useTheme from '../lib/useTheme'
-
 import Title from './Title'
-import ThemeToggle from './ThemeToggle'
 
-export default (props) => {
-  const theme = useTheme()
+export default ({ children }) => {
   return (
     <main>
-      <Title>
-        <ThemeToggle />
-        Air Quality - {props.title}
-      </Title>
-      {props.children}
+      <Title>Air Quality Monitor</Title>
+
+      {children}
 
       <style jsx>{`
         main {
           padding: 16px;
-          max-width: 1600px;
+          max-width: 1000px;
           margin: 0 auto;
-          color: ${theme.foreground};
           font-family: 'Circular Std', sans-serif;
+          color: #ECEFF4;
         }
       `}</style>
       <style jsx global>{`
@@ -34,15 +28,7 @@ export default (props) => {
           src: url('/static/CircularStd-Bold.ttf');
         }
         body {
-          margin: 0;
-          height: 100vh;
-          background: ${theme.background};
-          overflow-y: scroll;
-          overflow-x: hidden;
-        }
-        ::selection {
-          background: ${theme.button.background};
-          color: ${theme.button.foreground};
+          background-color: #2E3440;
         }
       `}</style>
     </main>

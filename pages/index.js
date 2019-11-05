@@ -1,47 +1,67 @@
-import getInitial from '../lib/getInitial'
+import {
+  formatPm,
+  formatGas,
+  formatTemperature,
+  formatHumidity
+} from '../lib/formatters'
+import fetchData from '../lib/fetchData'
 import useData from '../lib/useData'
-import useSocket from '../lib/useSocket'
-import capitalize from '../lib/capitalize'
 
-import Theme from '../components/Theme'
 import Layout from '../components/Layout'
-import Tabs from '../components/Tabs'
+import Section from '../components/Section'
+import Plot from '../components/Plot'
 
-import OverviewView from '../views/Overview'
-import DetailView from '../views/Detail'
+const Page = ({ initialData }) => {
+  const data = useData(initialData)
 
-import { useState } from 'react'
-import cookies from 'next-cookies'
+  return (<Layout>
+    <Section title='Particulate matter'>
+      <Plot
+        data={data.particulates}
+        keys={['pm2p5', 'pm1']}
+        labels={['PM2.5', 'PM1']}
+        formatter={formatPm}
+      />
+      <Plot
+        data={data.particulates}
+        keys={['pm10']}
+        labels={['PM10']}
+        formatter={formatPm}
+      />
+    </Section>
 
-const View = (props) => {
-  if (props.tab === 'overview') {
-    return <OverviewView data={props.data} />
-  } else {
-    return <DetailView data={props.data[props.tab]} />
-  }
+    <Section title='Gases'>
+      <Plot
+        data={data.gases}
+        keys={['CO.cnc', 'NO2.cnc', 'Ox.cnc', 'SO2.cnc']}
+        labels={['Carbon monoxide', 'Nitrogen dioxide', 'Ozone', 'Sulphur dioxide']}
+        formatter={formatGas}
+      />
+    </Section>
+
+    <Section title='Temperature'>
+      <Plot
+        data={data.climate}
+        keys={['tmp']}
+        labels={['Temperature']}
+        formatter={formatTemperature}
+      />
+    </Section>
+
+    <Section title='Relative humidity'>
+      <Plot
+        data={data.climate}
+        keys={['hmd']}
+        labels={['Humidity']}
+        formatter={formatHumidity}
+      />
+    </Section>
+  </Layout>)
 }
 
-const Page = (props) => {
-  const [ tab, setTab ] = useState('overview')
-  const [ data, pushData ] = useData(props.initialData)
-  useSocket(pushData)
-  
-  return (
-    <Theme defaultDark={props.defaultDark}>   
-      <Layout title={capitalize(tab)}>
-        <Tabs tab={tab} setTab={setTab} tabs={[ 'overview', ...Object.keys(data) ]} />
-        <View tab={tab} data={data} />
-      </Layout>
-    </Theme>
-  )
-}
-
-Page.getInitialProps = async (ctx) => {
-  const { theme } =  cookies(ctx)
-  const defaultDark = theme ? theme === 'glory' : true
-
-  const initialData = await getInitial()
-  return { initialData, defaultDark }
+Page.getInitialProps = async () => {
+  const initialData = await fetchData()
+  return { initialData }
 }
 
 export default Page

@@ -10,4 +10,4 @@ COPY . .
 RUN yarn build
 
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+CMD [ "yarn", "start" ]
