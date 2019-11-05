@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import {
   FlexibleWidthXYPlot,
   DiscreteColorLegend,
@@ -11,7 +11,15 @@ import objectPath from 'object-path'
 
 import CrosshairBody from './CrosshairBody'
 
-export default ({ data, keys, colors, formatter = (v) => v, labels = keys }) => {
+const aurora = [
+  '#FAFF75',
+  '#70FF90',
+  '#6BC1FF',
+  '#D466FF',
+  '#FF65E8'
+]
+
+export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = keys }) => {
   const [hovered, setHovered] = useState([])
   const setHoveredIndex = useCallback((index) => {
     if (typeof index !== 'number') return setHovered([])
@@ -29,7 +37,7 @@ export default ({ data, keys, colors, formatter = (v) => v, labels = keys }) => 
       <DiscreteColorLegend
         items={labels.map((label, index) => ({
           title: label,
-          color: colors[index]
+          color: aurora[(index + auroraOffset) % aurora.length]
         }))}
       />
 
@@ -54,7 +62,7 @@ export default ({ data, keys, colors, formatter = (v) => v, labels = keys }) => 
             fill: 'transparent'
           }}
           strokeWidth={2}
-          color={colors[index]}
+          color={aurora[(index + auroraOffset) % aurora.length]}
           onNearestX={index === 0 ? (_, { index }) => setHoveredIndex(index) : undefined}
         />
       ))}
