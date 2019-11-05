@@ -12,7 +12,7 @@ export default ({ hovered, keys, labels, formatter }) => (
         border-radius: 6px;
         background: #3B4252;
         color: #E5E9F0;
-        font-size: 12px;
+        font-size: 14px;
         padding: 8px 10px;
         width: 180px;
       }
