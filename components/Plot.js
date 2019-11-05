@@ -101,6 +101,12 @@ export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = k
         top: 0;
         right: 0;
         z-index: 88;
+        border-radius: 6px;
+        background: #3B4252;
+        color: #E5E9F0;
+        padding: 8px 10px;
+        padding-bottom: 4px;
+        width: 180px;
       }
 
       .rv-discrete-color-legend svg {
