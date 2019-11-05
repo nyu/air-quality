@@ -1,12 +1,11 @@
 export default ({ children }) => (
-  <h1>
+  <h2>
     {children}
 
     <style jsx>{`
-      h1 {
-        font-size: 2.25em;
-        padding-bottom: 20px;
+      h2 {
+        font-size: 1.5em;
       }
     `}</style>
-  </h1>
+  </h2>
 )
