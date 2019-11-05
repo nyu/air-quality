@@ -26,6 +26,7 @@ const Page = ({ initialData }) => {
         data={data.particulates}
         keys={['pm10']}
         labels={['PM10']}
+        auroraOffset={2}
         formatter={formatPm}
       />
     </Section>
@@ -44,6 +45,7 @@ const Page = ({ initialData }) => {
         data={data.climate}
         keys={['tmp']}
         labels={['Temperature']}
+        auroraOffset={2}
         formatter={formatTemperature}
       />
     </Section>
@@ -53,6 +55,7 @@ const Page = ({ initialData }) => {
         data={data.climate}
         keys={['hmd']}
         labels={['Humidity']}
+        auroraOffset={1}
         formatter={formatHumidity}
       />
     </Section>
