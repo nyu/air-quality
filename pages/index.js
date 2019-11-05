@@ -34,8 +34,15 @@ const Page = ({ initialData }) => {
     <Section title='Gases'>
       <Plot
         data={data.gases}
-        keys={['CO.cnc', 'NO2.cnc', 'Ox.cnc', 'SO2.cnc']}
-        labels={['Carbon monoxide', 'Nitrogen dioxide', 'Ozone', 'Sulphur dioxide']}
+        keys={['CO.cnc']}
+        labels={['Carbon monoxide']}
+        formatter={formatGas}
+      />
+      <Plot
+        data={data.gases}
+        keys={['NO2.cnc', 'Ox.cnc', 'SO2.cnc']}
+        labels={['Nitrogen dioxide', 'Ozone', 'Sulphur dioxide']}
+        auroraOffset={1}
         formatter={formatGas}
       />
     </Section>
