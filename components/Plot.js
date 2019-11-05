@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
+import { useState, useCallback } from 'react'
 import {
   FlexibleWidthXYPlot,
   DiscreteColorLegend,
@@ -12,17 +11,9 @@ import objectPath from 'object-path'
 
 import CrosshairBody from './CrosshairBody'
 
-const aurora = [
-  '#D08770',
-  '#A3BE8C',
-  '#EBCB8B',
-  '#B48EAD',
-  '#BF616A'
-]
-
-export default ({ data, keys, formatter = (v) => v, labels = keys }) => {
+export default ({ data, keys, colors, formatter = (v) => v, labels = keys }) => {
   const [hovered, setHovered] = useState([])
-  const [setHoveredIndex] = useDebouncedCallback((index) => {
+  const setHoveredIndex = useCallback((index) => {
     if (typeof index !== 'number') return setHovered([])
     const c = data[index]
     setHovered(keys.map(
@@ -38,7 +29,7 @@ export default ({ data, keys, formatter = (v) => v, labels = keys }) => {
       <DiscreteColorLegend
         items={labels.map((label, index) => ({
           title: label,
-          color: aurora[index % aurora.length]
+          color: colors[index]
         }))}
       />
 
@@ -63,7 +54,7 @@ export default ({ data, keys, formatter = (v) => v, labels = keys }) => {
             fill: 'transparent'
           }}
           strokeWidth={2}
-          color={aurora[index % aurora.length]}
+          color={colors[index]}
           onNearestX={index === 0 ? (_, { index }) => setHoveredIndex(index) : undefined}
         />
       ))}
