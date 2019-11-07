@@ -19,7 +19,7 @@ const aurora = [
   '#FF65E8'
 ]
 
-export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = keys }) => {
+export default ({ data, keys, range, auroraOffset = 0, formatter = (v) => v, labels = keys }) => {
   const [hovered, setHovered] = useState([])
   const setHoveredIndex = useCallback((index) => {
     if (typeof index !== 'number') return setHovered([])
@@ -33,7 +33,7 @@ export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = k
   }, 1000, { maxWait: 100 })
 
   return (<div className='plot'>
-    <FlexibleWidthXYPlot height={300} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}>
+    <FlexibleWidthXYPlot yDomain={range} height={300} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}>
       <DiscreteColorLegend
         items={labels.map((label, index) => ({
           title: label,

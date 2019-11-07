@@ -20,6 +20,7 @@ const Page = ({ initialData }) => {
         data={data.particulates}
         keys={['pm2p5', 'pm1']}
         labels={['PM2.5', 'PM1']}
+        range={[0, 16]}
         formatter={formatPm}
       />
       <Plot
@@ -27,6 +28,7 @@ const Page = ({ initialData }) => {
         keys={['pm10']}
         labels={['PM10']}
         auroraOffset={2}
+        range={[0, 40]}
         formatter={formatPm}
       />
     </Section>
@@ -53,6 +55,7 @@ const Page = ({ initialData }) => {
         keys={['tmp']}
         labels={['Temperature']}
         auroraOffset={2}
+        range={[15, 30]}
         formatter={formatTemperature}
       />
     </Section>
@@ -63,6 +66,7 @@ const Page = ({ initialData }) => {
         keys={['hmd']}
         labels={['Humidity']}
         auroraOffset={1}
+        range={[30, 70]}
         formatter={formatHumidity}
       />
     </Section>
