@@ -7,7 +7,7 @@ import {
 import fetchData from '../lib/fetchData'
 import fetchAqi from '../lib/fetchAqi'
 import useData from '../lib/useData'
-import getColorFromAqi from '../lib/getColorFromAqi'
+import { getColor as getColorFromAqi } from '../lib/getAqiInfo'
 
 import Text from '../components/Text'
 import Layout from '../components/Layout'
