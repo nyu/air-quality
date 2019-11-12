@@ -13,13 +13,14 @@ import Text from '../components/Text'
 import Layout from '../components/Layout'
 import Section from '../components/Section'
 import Plot from '../components/Plot'
+import getDescriptorFromAqi from '../lib/getDescriptorFromAqi'
 
 const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
 
   return (<Layout>
     <Text color='white' background={getColorFromAqi(aqi)}  >
-      The AQI is currently {aqi}
+      The AQI is Currently {aqi}: {getDescriptorFromAqi(aqi)}
     </Text>
 
     <Section title='Particulate matter'>

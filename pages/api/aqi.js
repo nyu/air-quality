@@ -1,3 +1,3 @@
 export default (req, res) => {
-  res.json({ aqi: 0 })
+  res.json({ aqi: 150 })
 }
