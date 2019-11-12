@@ -18,7 +18,7 @@ const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
 
   return (<Layout>
-    <Text color={getColorFromAqi(aqi)}>
+    <Text color='white' background={getColorFromAqi(aqi)}  >
       The AQI is currently {aqi}
     </Text>
 
