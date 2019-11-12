@@ -12,20 +12,20 @@ export default ({ children }) => {
           padding: 16px;
           max-width: 1000px;
           margin: 0 auto;
-          font-family: 'Circular Std', sans-serif;
+          font-family: 'Gotham', sans-serif;
           color: #ECEFF4;
         }
       `}</style>
       <style jsx global>{`
         @font-face {
-          font-family: 'Circular Std';
+          font-family: 'Gotham';
           font-weight: 400;
-          src: url('/static/font/Gotham-light.otf');
+          src: url('/static/font/Gotham-Book.otf');
         }
         @font-face {
-          font-family: 'Circular Std';
+          font-family: 'Gotham';
           font-weight: 700;
-          src: url('/static/font/Gotham-book.otf');
+          src: url('/static/font/Gotham-Bold.otf');
         }
         body {
           background-color: #2E3440;
