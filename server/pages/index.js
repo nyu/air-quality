@@ -5,16 +5,24 @@ import {
   formatHumidity
 } from '../lib/formatters'
 import fetchData from '../lib/fetchData'
+import fetchAqi from '../lib/fetchAqi'
 import useData from '../lib/useData'
+import getAqiInfo from '../lib/getAqiInfo'
 
+import Text from '../components/Text'
 import Layout from '../components/Layout'
 import Section from '../components/Section'
 import Plot from '../components/Plot'
 
-const Page = ({ initialData }) => {
+const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
+  const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
+    <Text color={aqiInfo.onColor} background={aqiInfo.color}>
+      The AQI is Currently {aqi}: {aqiInfo.descriptor}
+    </Text>
+
     <Section title='Particulate matter'>
       <Plot
         data={data.particulates}
@@ -74,8 +82,8 @@ const Page = ({ initialData }) => {
 }
 
 Page.getInitialProps = async () => {
-  const initialData = await fetchData()
-  return { initialData }
+  const [initialData, aqi] = await Promise.all([fetchData(), fetchAqi()])
+  return { initialData, aqi }
 }
 
 export default Page

@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-unfetch'
+const fetch = require('node-fetch')
 
 const types = [
   'particulates',
@@ -6,10 +6,10 @@ const types = [
   'gases'
 ]
 
-export default async () => {
-  const end = new Date() // End date is current date
-  const start = new Date(end) // Copy end date to start date
-  start.setHours(start.getHours() - 2) // Turn start date back two hours
+module.exports.getPoints = async () => {
+  const end = new Date()
+  const start = new Date(end)
+  start.setHours(start.getHours() - 2)
 
   const data = {}
 

@@ -11,7 +11,7 @@ import objectPath from 'object-path'
 
 import CrosshairBody from './CrosshairBody'
 
-const aurora = [
+const aurora1 = [
   '#FAFF75',
   '#70FF90',
   '#6BC1FF',
@@ -19,7 +19,24 @@ const aurora = [
   '#FF65E8'
 ]
 
-export default ({ data, keys, range, auroraOffset = 0, formatter = (v) => v, labels = keys }) => {
+const aurora2 = [
+  "#10dad5",
+  "#ff7700",
+  "#fcda00",
+  "#11eb00",
+  "#2b97d6"
+]
+
+const aurora = [
+  "#55a7d6",
+  "#10dad5",
+  "#ff8800",
+  "#3dda74",
+  "#fcbc0b",
+  "#55a7d6"
+]
+
+export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = keys }) => {
   const [hovered, setHovered] = useState([])
   const setHoveredIndex = useCallback((index) => {
     if (typeof index !== 'number') return setHovered([])
@@ -33,7 +50,7 @@ export default ({ data, keys, range, auroraOffset = 0, formatter = (v) => v, lab
   }, 1000, { maxWait: 100 })
 
   return (<div className='plot'>
-    <FlexibleWidthXYPlot yDomain={range} height={300} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}>
+    <FlexibleWidthXYPlot height={300} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}>
       <DiscreteColorLegend
         items={labels.map((label, index) => ({
           title: label,
