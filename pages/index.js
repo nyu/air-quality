@@ -7,20 +7,20 @@ import {
 import fetchData from '../lib/fetchData'
 import fetchAqi from '../lib/fetchAqi'
 import useData from '../lib/useData'
-import { getColor as getColorFromAqi } from '../lib/getAqiInfo'
+import getAqiInfo from '../lib/getAqiInfo'
 
 import Text from '../components/Text'
 import Layout from '../components/Layout'
 import Section from '../components/Section'
 import Plot from '../components/Plot'
-import getDescriptorFromAqi from '../lib/getDescriptorFromAqi'
 
 const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
+  const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
-    <Text color='white' background={getColorFromAqi(aqi)}  >
-      The AQI is Currently {aqi}: {getDescriptorFromAqi(aqi)}
+    <Text color='white' background={aqiInfo.color}>
+      The AQI is Currently {aqi}: {aqiInfo.descriptor}
     </Text>
 
     <Section title='Particulate matter'>

@@ -4,7 +4,6 @@ export default ({ color, children, background }) => (
     <style jsx>{`
       p {
         margin: 0;
-        border-radius: 6px;
         margin-bottom: 12px;
         color: ${color || 'inherit'};
         background: ${background || 'inherit'};
