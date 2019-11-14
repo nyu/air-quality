@@ -2,7 +2,7 @@ const calculate = (aqiHigh, aqiLow, cHigh, cLow, c) => {
   return Math.round(((c - cLow) / (cHigh - cLow)) * (aqiHigh - aqiLow) + aqiLow)
 }
 
-export default (c) => {
+module.exports.getAqiFromAverage = (c) => {
   switch (true) {
     case (c >= 0 && c < 12.1):
       return calculate(50, 0, 12, 0, c)
@@ -22,3 +22,5 @@ export default (c) => {
       return 1000
   }
 }
+
+module.exports.averagePoints = (points) => points.reduce((p, c) => p + c.pm25, 0) / points.length
