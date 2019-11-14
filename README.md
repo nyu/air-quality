@@ -1,58 +1,59 @@
-# AirQuality
+# NYU Air Quality Project
 
 *This is the source code for the website of the NYU Shanghai air quality monitoring network.*
 
-[airquality.engineering.nyu.edu](http://airquality.engineering.nyu.edu/)
-
+Currently live at [airquality.engineering.nyu.edu](http://airquality.engineering.nyu.edu/).
 
 ## Development
 
-This is how to run the code locally for development. All data will be mocked.
+This is how to run the code locally for development.
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com/)
-- `$ yarn` to install packages
+- [Docker](https://docs.docker.com/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Packages
+
+Install the needed packages by running the following commands.
+
+```
+$ cd server
+$ yarn
+
+$ cd ../worker
+$ yarn
+
+$ cd ..
+```
 
 ### Running
 
-Just run the following command to start a development server with live-reload. **Note that the server must be manually restarted after changes to the backend.**
+Open three terminal sessions, one in the root folder, one in `server/`, and one in `worker/`.
 
-```
-$ yarn dev
-```
+In the root folder run `docker-compose up db --build`.
+
+In `server/` simply run `yarn dev`.
+
+In `worker/` run `yarn start`. Note that after making changes you'll have to re-run this command.
+
+Now visit [localhost:3000](http://localhost:3000/) in your browser to check out the website. If you want to look at the MongoDB database it's available on port 27017.
 
 ## Production
 
-This is how to run it on a production server. Of course, this works exactly the same locally, if you want to test it out. **All data is being mocked as well, until I stop being lazy and add a database entry with the request body.**
+This is how to run this on a production server.
 
 ### Prerequisites
 
 - [Docker](https://docs.docker.com/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
-- Create a file called `.env` with the contents set to `SECRET_KEY=<some secret key here>` (the key should be kept private and is used to secure communications)
 
 ### Running
 
-You can append the `-d` flag to start it in the backgroun. If you *do* use this flag you can run `docker-compose down` to terminate it.
+Just run this command in the project's directory. To restart you can run the same command again!
 
 ```
-$ docker-compose up --build
-```
-
-You will likely need `sudo` for this - you can remove this restriction by running the following command.
-
-```
-$ sudo usermod -aG docker $USER
-```
-
-### Restarting
-
-Although it's unlikely that this will be updated a lot - if you want to restart with the lowest amount of downtime possible run the following commands instead of anything above.
-
-```
-$ docker-compose build
-$ docker-compose down
-$ docker-compose up -d
+$ docker-compose up -d --build
 ```
