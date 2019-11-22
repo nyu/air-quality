@@ -20,7 +20,7 @@ const saveAqi = () => {
     .catch(console.error)
 }
 
-setInterval(() => saveAqi, 1000 * 60 * 5)
+setInterval(saveAqi, 1000 * 60 * 5)
 setInterval(savePoints, 1000 * 60 * 60)
 
 savePoints().then(() => saveAqi())
