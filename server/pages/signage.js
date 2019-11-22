@@ -11,13 +11,14 @@ import Text from '../components/Text'
 import Layout from '../components/SignageLayout'
 import Section from '../components/Section'
 import Plot from '../components/Plot'
+import URL from '../components/URL'
 
 const Page = ({initialData}) => {
   const data = useData(initialData)
 
   return (<Layout>
 
-    <Section title='Particulate matter'>
+    <Section title='Particulate matter' id='particulate-matter'>
       <Plot
         data={data.particulates}
         keys={['pm2p5', 'pm1']}
@@ -33,7 +34,11 @@ const Page = ({initialData}) => {
       />
     </Section>
 
-    <Section title='Gases'>
+    <URL font-size='x-large' margin-top='150px'>
+      airquality.engineering.nyu.edu
+      </URL>    
+
+    <Section title='Gases' id='gases'>
       <Plot
         data={data.gases}
         keys={['CO.cnc']}
@@ -49,7 +54,7 @@ const Page = ({initialData}) => {
       />
     </Section>
 
-    <Section title='Temperature'>
+    <Section title='Temperature' id='temperature'>
       <Plot
         data={data.climate}
         keys={['tmp']}
@@ -59,7 +64,7 @@ const Page = ({initialData}) => {
       />
     </Section>
 
-    <Section title='Relative humidity'>
+    <Section title='Relative humidity' id='relative-humidity'>
       <Plot
         data={data.climate}
         keys={['hmd']}
