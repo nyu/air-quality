@@ -19,16 +19,16 @@ const Page = ({ initialData, aqi }) => {
   const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
-    <Text color={aqiInfo.onColor} background={aqiInfo.color}>
+    {/* <Text color={aqiInfo.onColor} background={aqiInfo.color}>
       The AQI is Currently {aqi}: {aqiInfo.descriptor}
-    </Text>
+    </Text> */}
 
     <Section title='Particulate matter'>
       <Plot
         data={data.particulates}
         keys={['pm2p5', 'pm1']}
         labels={['PM2.5', 'PM1']}
-        range={[0, 16]}
+        range={[0, 50]}
         formatter={formatPm}
       />
       <Plot
@@ -36,7 +36,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['pm10']}
         labels={['PM10']}
         auroraOffset={2}
-        range={[0, 40]}
+        range={[0, 100]}
         formatter={formatPm}
       />
     </Section>
@@ -63,7 +63,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['tmp']}
         labels={['Temperature']}
         auroraOffset={2}
-        range={[15, 30]}
+        range={[14, 40]}
         formatter={formatTemperature}
       />
     </Section>
