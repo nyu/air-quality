@@ -19,9 +19,9 @@ const Page = ({ initialData, aqi }) => {
   const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
-    {/* <Text color={aqiInfo.onColor} background={aqiInfo.color}>
+    <Text color={aqiInfo.onColor} background={aqiInfo.color}>
       The AQI is Currently {aqi}: {aqiInfo.descriptor}
-    </Text> */}
+    </Text>
 
     <Section title='Particulate matter'>
       <Plot
