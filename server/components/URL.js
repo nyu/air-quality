@@ -3,7 +3,7 @@ export default ({ color, children, background }) => (
     {children}
     <style jsx>{`
       p {
-        margin-top: 100px;
+        margin-top: 80px;
         margin-bottom: -80px
         color: ${color || 'inherit'};
         background: ${background || 'inherit'};
