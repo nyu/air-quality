@@ -19,9 +19,9 @@ const Page = ({ initialData, aqi }) => {
   const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
-    {/* <Text color={aqiInfo.onColor} background={aqiInfo.color}>
+    <Text color={aqiInfo.onColor} background={aqiInfo.color}>
       The AQI is Currently {aqi}: {aqiInfo.descriptor}
-    </Text> */}
+    </Text>
 
     <Section title='Particulate matter'>
       <Plot
@@ -78,6 +78,12 @@ const Page = ({ initialData, aqi }) => {
         formatter={formatHumidity}
       />
     </Section>
+
+    <Text>
+      NYU Shanghai Air Quality Monitoring Network
+      Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar 
+      Made possible by a Green Grant from the Office of Sustainability
+      </Text>
   </Layout>)
 }
 

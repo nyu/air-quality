@@ -5,7 +5,9 @@ import {
   formatHumidity
 } from '../lib/formatters'
 import fetchData from '../lib/fetchData'
+import fetchAqi from '../lib/fetchAqi'
 import useData from '../lib/useData'
+import getAqiInfo from '../lib/getAqiInfo'
 
 import Text from '../components/Text'
 import Layout from '../components/SignageLayout'
@@ -13,10 +15,16 @@ import Section from '../components/Section'
 import Plot from '../components/Plot'
 import URL from '../components/URL'
 
-const Page = ({initialData}) => {
+const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
+  const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
+
+    <Text color={aqiInfo.onColor} background={aqiInfo.color}>
+      The AQI is Currently {aqi}: {aqiInfo.descriptor}
+      </Text>
+
 
     <Section title='Particulate matter' id='particulate-matter'>
       <Plot
@@ -34,9 +42,15 @@ const Page = ({initialData}) => {
       />
     </Section>
 
-    <URL font-size='x-large' margin-top='150px'>
+    <URL>
       airquality.engineering.nyu.edu
       </URL>    
+
+    <Text>
+      NYU Shanghai Air Quality Monitoring Network
+      Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar 
+      Made possible by a Green Grant from the Office of Sustainability
+      </Text>
 
     <Section title='Gases' id='gases'>
       <Plot
@@ -77,8 +91,8 @@ const Page = ({initialData}) => {
 }
 
 Page.getInitialProps = async () => {
-  const [initialData] = await Promise.all([fetchData()])
-  return { initialData}
+  const [initialData, aqi] = await Promise.all([fetchData(), fetchAqi()])
+  return { initialData, aqi }
 }
 
 export default Page
