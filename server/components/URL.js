@@ -3,8 +3,8 @@ export default ({ color, children, background }) => (
     {children}
     <style jsx>{`
       p {
-        margin-top: 120px;
-        margin-bottom: 100px;
+        margin-top: 100px;
+        margin-bottom: -80px
         color: ${color || 'inherit'};
         background: ${background || 'inherit'};
         text-align: center;
