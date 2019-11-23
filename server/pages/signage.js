@@ -9,6 +9,7 @@ import fetchAqi from '../lib/fetchAqi'
 import useData from '../lib/useData'
 import getAqiInfo from '../lib/getAqiInfo'
 
+
 import Text from '../components/Text'
 import Layout from '../components/SignageLayout'
 import Section from '../components/Section'
@@ -23,9 +24,8 @@ const Page = ({ initialData, aqi }) => {
 
     <Text color={aqiInfo.onColor} background={aqiInfo.color}>
       The AQI is Currently {aqi}: {aqiInfo.descriptor}
-      </Text>
-
-
+    </Text>
+          
     <Section title='Particulate matter' id='particulate-matter'>
       <Plot
         data={data.particulates}
