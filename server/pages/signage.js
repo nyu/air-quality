@@ -47,8 +47,8 @@ const Page = ({ initialData, aqi }) => {
       </URL>    
 
     <Text>
-      NYU Shanghai Air Quality Monitoring Network
-      Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar 
+      NYU Shanghai Air Quality Monitoring Network<br></br>
+      Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar <br></br>
       Made possible by a Green Grant from the Office of Sustainability
       </Text>
 
