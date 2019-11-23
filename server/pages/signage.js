@@ -85,8 +85,8 @@ const Page = ({ initialData, aqi }) => {
 }
 
 Page.getInitialProps = async () => {
-  const [initialData] = await Promise.all([fetchData()])
-  return { initialData}
+  const [initialData, aqi] = await Promise.all([fetchData(), fetchAqi()])
+  return { initialData, aqi }
 }
 
 export default Page
