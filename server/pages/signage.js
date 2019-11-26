@@ -11,7 +11,7 @@ import getAqiInfo from '../lib/getAqiInfo'
 
 
 import Text from '../components/Text'
-import Layout from '../components/Layout'
+import Layout from '../components/SignageLayout'
 import Section from '../components/Section'
 import Plot from '../components/Plot'
 import URL from '../components/URL'
