@@ -20,11 +20,9 @@ This is how to run the code locally for development.
 Install the needed packages by running the following commands.
 
 ```
-$ cd server
-$ yarn
+$ cd server; yarn
 
-$ cd ../worker
-$ yarn
+$ cd ../worker; yarn
 
 $ cd ..
 ```
