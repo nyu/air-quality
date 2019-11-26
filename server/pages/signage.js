@@ -11,7 +11,7 @@ import getAqiInfo from '../lib/getAqiInfo'
 
 
 import Text from '../components/Text'
-import Layout from '../components/SignageLayout'
+import Layout from '../components/Layout'
 import Section from '../components/Section'
 import Plot from '../components/Plot'
 import URL from '../components/URL'
@@ -31,7 +31,7 @@ const Page = ({ initialData, aqi }) => {
         data={data.particulates}
         keys={['pm2p5', 'pm1']}
         labels={['PM2.5', 'PM1']}
-        range={[0, 20]}
+        range={[0, 40]}
         padding={undefined}
         formatter={formatPm}
         // height={200}
@@ -48,7 +48,7 @@ const Page = ({ initialData, aqi }) => {
       />
     </Section>
 
-    <URL>
+    {/* <URL>
       airquality.engineering.nyu.edu
       </URL>    
 
@@ -56,7 +56,7 @@ const Page = ({ initialData, aqi }) => {
       NYU Shanghai Air Quality Monitoring Network<br></br>
       Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar <br></br>
       Made possible by a Green Grant from the Office of Sustainability
-      </Text>
+      </Text> */}
 
     <Section title='Gases' id='gases'>
       <Plot
@@ -88,7 +88,7 @@ const Page = ({ initialData, aqi }) => {
     </Section>
     <Section/>
 
-    <URL>
+    {/* <URL>
       airquality.engineering.nyu.edu
       </URL>    
 
@@ -96,12 +96,7 @@ const Page = ({ initialData, aqi }) => {
       NYU Shanghai Air Quality Monitoring Network<br></br>
       Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar <br></br>
       Made possible by a Green Grant from the Office of Sustainability
-      </Text>
-
-      <Text color={aqiInfo.onColor} background={aqiInfo.color}>
-      The AQI is Currently {aqi}: {aqiInfo.descriptor}
-    </Text>
-
+      </Text> */}
 
     <Section title='Temperature' id='temperature'>
       <Plot
@@ -109,7 +104,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['tmp']}
         labels={['Temperature']}
         auroraOffset={2}
-        padding={400}
+        padding={450}
         height={370}
         formatter={formatTemperature}
       />
@@ -121,7 +116,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['hmd']}
         labels={['Humidity']}
         auroraOffset={1}
-        padding={400}
+        padding={200}
         height={370}
         formatter={formatHumidity}
       />
