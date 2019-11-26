@@ -35,7 +35,8 @@ const Page = ({ initialData, aqi }) => {
         data={data.particulates}
         keys={['pm10']}
         labels={['PM10']}
-        range={[0, 50]}
+        range={[0, 100]}
+        padding={100}
         auroraOffset={2}
         formatter={formatPm}
       />
@@ -46,14 +47,14 @@ const Page = ({ initialData, aqi }) => {
         data={data.gases}
         keys={['CO.cnc']}
         labels={['Carbon monoxide']}
-        range={[0, 20]}
+        padding={100}
         formatter={formatGas}
       />
       <Plot
         data={data.gases}
-        keys={['NO2.cnc', 'Ox.cnc', 'SO2.cnc']}
-        labels={['Nitrogen dioxide', 'Ozone', 'Sulphur dioxide']}
-        range={[0, 20]}
+        keys={['NO2.cnc', 'Ox.cnc']} // 'SO2.cnc'
+        labels={['Nitrogen dioxide', 'Ozone']} // 'Sulphur dioxide' 
+        range={[0, 100]}
         auroraOffset={1}
         formatter={formatGas}
       />
@@ -65,7 +66,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['tmp']}
         labels={['Temperature']}
         auroraOffset={2}
-        range={[14, 40]}
+        padding={300}
         formatter={formatTemperature}
       />
     </Section>
@@ -76,7 +77,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['hmd']}
         labels={['Humidity']}
         auroraOffset={1}
-        range={[30, 70]}
+        padding={400}
         formatter={formatHumidity}
       />
     </Section>

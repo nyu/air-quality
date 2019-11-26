@@ -6,12 +6,12 @@ export default ({ children }) => {
       <Title>Shanghai Air Quality</Title>
 
       {children}
-
+      
       <style jsx>{`
         main {
-          padding: 16px;
+          padding: 0px;
           max-width: 2000px;
-          margin: 0 auto;
+          margin: 0px auto;
           font-family: 'Circular Std', sans-serif;
           color: #ECEFF4;
         }

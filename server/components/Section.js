@@ -1,12 +1,11 @@
 import Subtitle from './Subtitle'
 
-export default ({ title, children }) => {
+export default ({ title, id = undefined, children }) => {
   return (
-    <section>
+    <section id={id}>
       <Subtitle>{title}</Subtitle>
 
       {children}
-
       <style jsx>{`
         section {
           margin-bottom: 40px;
