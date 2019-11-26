@@ -36,7 +36,7 @@ const aurora = [
   "#55a7d6"
 ]
 
-export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = keys }) => {
+export default ({data, keys, range = undefined, padding, auroraOffset = 0, formatter = (v) => v, labels = keys, height = 330 }) => {
   const [hovered, setHovered] = useState([])
   const setHoveredIndex = useCallback((index) => {
     if (typeof index !== 'number') return setHovered([])
@@ -50,7 +50,11 @@ export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = k
   }, 1000, { maxWait: 100 })
 
   return (<div className='plot'>
-    <FlexibleWidthXYPlot height={300} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}>
+    <FlexibleWidthXYPlot height={height} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}
+    yDomain={range}
+    yPadding={padding}
+    // yDomain={[0,100]}
+    >
       <DiscreteColorLegend
         items={labels.map((label, index) => ({
           title: label,
@@ -58,7 +62,7 @@ export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = k
         }))}
       />
 
-      <YAxis tickFormat={formatter} />
+      <YAxis tickFormat={formatter}/>
       <XAxis
         tickTotal={4}
         tickFormat={(when) => new Date(when).toLocaleTimeString('en-US')}
@@ -98,7 +102,7 @@ export default ({ data, keys, auroraOffset = 0, formatter = (v) => v, labels = k
 
     <style jsx>{`
       .plot {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
     `}</style>
     <style jsx global>{`
