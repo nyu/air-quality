@@ -12,7 +12,7 @@ import getAqiInfo from '../lib/getAqiInfo'
 import Text from '../components/Text'
 import Layout from '../components/Layout'
 import Section from '../components/Section'
-import Plot from '../components/Plot'
+import Plot from '../components/Plot' 
 
 const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
@@ -28,15 +28,15 @@ const Page = ({ initialData, aqi }) => {
         data={data.particulates}
         keys={['pm2p5', 'pm1']}
         labels={['PM2.5', 'PM1']}
-        range={[0, 50]}
+        range={[0, 20]}
         formatter={formatPm}
       />
       <Plot
         data={data.particulates}
         keys={['pm10']}
         labels={['PM10']}
+        range={[0, 50]}
         auroraOffset={2}
-        range={[0, 100]}
         formatter={formatPm}
       />
     </Section>
@@ -46,12 +46,14 @@ const Page = ({ initialData, aqi }) => {
         data={data.gases}
         keys={['CO.cnc']}
         labels={['Carbon monoxide']}
+        range={[0, 20]}
         formatter={formatGas}
       />
       <Plot
         data={data.gases}
         keys={['NO2.cnc', 'Ox.cnc', 'SO2.cnc']}
         labels={['Nitrogen dioxide', 'Ozone', 'Sulphur dioxide']}
+        range={[0, 20]}
         auroraOffset={1}
         formatter={formatGas}
       />
@@ -80,8 +82,8 @@ const Page = ({ initialData, aqi }) => {
     </Section>
 
     <Text>
-      NYU Shanghai Air Quality Monitoring Network <br></br>
-      Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar <br></br>
+      NYU Shanghai Air Quality Monitoring Network <br/>
+      Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar <br/>
       Made possible by a Green Grant from the Office of Sustainability
       </Text>
   </Layout>)
