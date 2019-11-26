@@ -3,14 +3,16 @@ import Title from './Title'
 export default ({ children }) => {
   return (
     <main>
-      <Title>Shanghai Air Quality</Title>
+        <title>NYU Shanghai Live Air Quality Data Dashboard</title>
+        <meta name="description" content="Live air quality data from the NYU Shanghai Air Quality Monitoring Network. Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar. Made possible by a Green Grant from the Office of Sustainability."></meta>
+      <Title>NYU Shanghai Air Quality</Title>
 
       {children}
 
       <style jsx>{`
         main {
           padding: 16px;
-          max-width: 1000px;
+          max-width: 1200px;
           margin: 0 auto;
           font-family: 'Gotham', sans-serif;
           color: #ECEFF4;
