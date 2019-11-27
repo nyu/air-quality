@@ -48,7 +48,7 @@ const Page = ({ initialData, aqi }) => {
       />
     </Section>
 
-    {/* <URL>
+    <URL>
       airquality.engineering.nyu.edu
       </URL>    
 
@@ -56,7 +56,7 @@ const Page = ({ initialData, aqi }) => {
       NYU Shanghai Air Quality Monitoring Network<br></br>
       Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar <br></br>
       Made possible by a Green Grant from the Office of Sustainability
-      </Text> */}
+      </Text>
 
     <Section title='Gases' id='gases'>
       <Plot
@@ -88,7 +88,7 @@ const Page = ({ initialData, aqi }) => {
     </Section>
     <Section/>
 
-    {/* <URL>
+    <URL>
       airquality.engineering.nyu.edu
       </URL>    
 
@@ -96,7 +96,7 @@ const Page = ({ initialData, aqi }) => {
       NYU Shanghai Air Quality Monitoring Network<br></br>
       Built by Caspar Lant, Felix Mattick, NYU Tandon Sensors group, and Prof. Kevin Cromar <br></br>
       Made possible by a Green Grant from the Office of Sustainability
-      </Text> */}
+      </Text>
 
     <Section title='Temperature' id='temperature'>
       <Plot
@@ -104,7 +104,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['tmp']}
         labels={['Temperature']}
         auroraOffset={2}
-        padding={450}
+        padding={400}
         height={370}
         formatter={formatTemperature}
       />
@@ -116,7 +116,7 @@ const Page = ({ initialData, aqi }) => {
         keys={['hmd']}
         labels={['Humidity']}
         auroraOffset={1}
-        padding={200}
+        padding={400}
         height={370}
         formatter={formatHumidity}
       />

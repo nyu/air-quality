@@ -50,7 +50,7 @@ export default ({data, keys, range = undefined, padding, auroraOffset = 0, forma
   }, 1000, { maxWait: 100 })
 
   return (<div className='plot'>
-    <FlexibleWidthXYPlot height={250} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}
+    <FlexibleWidthXYPlot height={height} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}
     yDomain={range}
     yPadding={padding}
     // yDomain={[0,100]}
