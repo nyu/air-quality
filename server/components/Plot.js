@@ -11,22 +11,6 @@ import objectPath from 'object-path'
 
 import CrosshairBody from './CrosshairBody'
 
-const aurora1 = [
-  '#FAFF75',
-  '#70FF90',
-  '#6BC1FF',
-  '#D466FF',
-  '#FF65E8'
-]
-
-const aurora2 = [
-  "#10dad5",
-  "#ff7700",
-  "#fcda00",
-  "#11eb00",
-  "#2b97d6"
-]
-
 const aurora = [
   "#55a7d6",
   "#10dad5",
