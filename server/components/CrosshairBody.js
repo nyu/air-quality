@@ -25,7 +25,7 @@ export default ({ hovered, keys, labels, formatter }) => (
         position: absolute;
         font-size: 14px;
         pointer-events: none;
-        transition: left 100ms;
+        transition: left 200ms;
         z-index: 99;
       }
 
@@ -48,5 +48,6 @@ export default ({ hovered, keys, labels, formatter }) => (
         top: 0;
       }
     `}</style>
+    {console.log('rendered')}
   </div>
 )

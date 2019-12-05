@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import {
   FlexibleWidthXYPlot,
   DiscreteColorLegend,
@@ -8,21 +8,23 @@ import {
   LineSeries
 } from 'react-vis'
 import objectPath from 'object-path'
+import useDebouncedishCallback from '../lib/useDebouncedishCallback'
 
 import CrosshairBody from './CrosshairBody'
 
 const aurora = [
-  "#55a7d6",
-  "#10dad5",
-  "#ff8800",
-  "#3dda74",
-  "#fcbc0b",
-  "#55a7d6"
+  '#55a7d6',
+  '#10dad5',
+  '#ff8800',
+  '#3dda74',
+  '#fcbc0b',
+  '#55a7d6'
 ]
 
-export default ({data, keys, range = undefined, padding, auroraOffset = 0, formatter = (v) => v, labels = keys, height = 330 }) => {
+export default ({ data, keys, range, padding, auroraOffset = 0, formatter = (v) => v, labels = keys, height = 330 }) => {
   const [hovered, setHovered] = useState([])
-  const setHoveredIndex = useCallback((index) => {
+  const setHoveredIndex = useDebouncedishCallback((index) => {
+    console.log('fdsfds', index)
     if (typeof index !== 'number') return setHovered([])
     const c = data[index]
     setHovered(keys.map(
@@ -31,13 +33,12 @@ export default ({data, keys, range = undefined, padding, auroraOffset = 0, forma
         y: objectPath.get(c.payload.val, key)
       })
     ))
-  }, 1000, { maxWait: 100 })
+  })
 
   return (<div className='plot'>
     <FlexibleWidthXYPlot height={height} margin={{ left: 100 }} onMouseLeave={() => setHoveredIndex(null)}
-    yDomain={range}
-    yPadding={padding}
-    // yDomain={[0,100]}
+      yDomain={range}
+      yPadding={padding}
     >
       <DiscreteColorLegend
         items={labels.map((label, index) => ({
@@ -110,7 +111,6 @@ export default ({data, keys, range = undefined, padding, auroraOffset = 0, forma
         background: #3B4252;
         color: #E5E9F0;
         padding: 8px 10px;
-        padding-bottom: 4px;
         width: 180px;
       }
 
