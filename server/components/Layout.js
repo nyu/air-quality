@@ -1,13 +1,21 @@
 import Title from './Title'
+import Text from './Text'
 
 export default ({ children }) => {
   return (
     <main>
-        <title>NYU Shanghai Live Air Quality Data Dashboard</title>
-        <meta name="description" content="Live air quality data from the NYU Shanghai Air Quality Monitoring Network. Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar. Made possible by a Green Grant from the Office of Sustainability."></meta>
+      <title>NYU Shanghai Live Air Quality Data Dashboard</title>
+      <meta name='description' content='Live air quality data from the NYU Shanghai Air Quality Monitoring Network. Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar. Made possible by a Green Grant from the Office of Sustainability.'></meta>
+      
       <Title>NYU Shanghai Air Quality</Title>
 
       {children}
+
+      <Text>
+        NYU Shanghai Air Quality Monitoring Network <br/>
+        Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar <br/>
+        Made possible by a Green Grant from the Office of Sustainability
+      </Text>
 
       <style jsx>{`
         main {

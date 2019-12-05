@@ -81,12 +81,6 @@ const Page = ({ initialData, aqi }) => {
         formatter={formatHumidity}
       />
     </Section>
-
-    <Text>
-      NYU Shanghai Air Quality Monitoring Network <br/>
-      Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar <br/>
-      Made possible by a Green Grant from the Office of Sustainability
-      </Text>
   </Layout>)
 }
 
