@@ -5,7 +5,7 @@ services:
     image: mongo:latest
     restart: always
     volumes:
-      - /Users/caspar/dev/temp200423/air-quality/db:/Users/caspar/dev/temp200423/air-quality/data/db
+      - /opt/airquality/db:/data/db
     ports:
       - 27017:27017
       

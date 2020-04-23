@@ -1,5 +1,5 @@
 FROM node:10
-WORKDIR /Users/caspar/dev/temp200423/air-quality/server
+WORKDIR /opt/airquality/server
 ENV NODE_ENV production
 
 COPY package.json ./
