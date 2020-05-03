@@ -103,3 +103,8 @@ module.exports.getLatestAqi = async () => {
   const point = await AQIMeasurement.findOne().sort({ when: -1 })
   return point
 }
+
+module.exports.getAqi = async() => {
+  const points = await AQIMeasurement.find({}).select('when value -_id')
+  return points
+}

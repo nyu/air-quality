@@ -4,8 +4,6 @@ services:
   db:
     image: mongo:latest
     restart: always
-    volumes:
-      - /opt/airquality/db:/data/db
     ports:
       - 27017:27017
       
