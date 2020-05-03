@@ -30,8 +30,7 @@ app = require('express')()
 
 app.get('/aqi', async (_, res) => {
   const latestAqi = await getLatestAqi()
-  res.send("hello!")
-  //res.json(latestAqi)
+  res.json(latestAqi)
 })
 
 app.get('/allaqi', async (req, res) => {
