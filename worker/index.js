@@ -35,7 +35,7 @@ app.get('/aqi', async (_, res) => {
 
 app.get('/allaqi', async (req, res) => {
   const allAqi = await getAqi()
-  res.send(allAqi)
+  res.json(allAqi)
 })
 
 app.listen(3001, () => console.log('> Server ready'))
