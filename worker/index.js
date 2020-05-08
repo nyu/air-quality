@@ -37,19 +37,34 @@ app.get('/aqi', async (_, res) => {
 })
 
 app.get('/data/particulates.csv', async (_, res) => {
-  const data = await ParticulatePoint.find()
+  const start = new Date()
+  start.setDate(start.getMonth() - 2)
+
+  const data = await ParticulatePoint.find({
+    when: { $gt: start }
+  })
   const parser = new Parser({ fields: [ 'pm25', 'pm1', 'pm10', 'when' ] })
   res.send(parser.parse(data))
 })
 
 app.get('/data/gases.csv', async (_, res) => {
-  const data = await GasPoint.find()
+  const start = new Date()
+  start.setDate(start.getMonth() - 2)
+
+  const data = await GasPoint.find({
+    when: { $gt: start }
+  })
   const parser = new Parser({ fields: [ 'c0', 'no2', 'o3', 'so2', 'when' ] })
   res.send(parser.parse(data))
 })
 
 app.get('/data/climate.csv', async (_, res) => {
-  const data = await ClimatePoint.find()
+  const start = new Date()
+  start.setDate(start.getMonth() - 2)
+
+  const data = await ClimatePoint.find({
+    when: { $gt: start }
+  })
   const parser = new Parser({ fields: [ 'temperature', 'humidity', 'when' ] })
   res.send(parser.parse(data))
 })
