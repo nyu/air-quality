@@ -103,3 +103,7 @@ module.exports.getLatestAqi = async () => {
   const point = await AQIMeasurement.findOne().sort({ when: -1 })
   return point
 }
+
+module.exports.ParticulatePoint = ParticulatePoint
+module.exports.GasPoint = GasPoint
+module.exports.ClimatePoint = ClimatePoint

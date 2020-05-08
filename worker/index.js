@@ -1,6 +1,10 @@
 const { getPoints } = require('./fetch')
 const { averagePoints, getAqiFromAverage } = require('./getPm25Aqi')
-const { addPoints, addAqiMeasurement, getPm2524h, getLatestAqi } = require('./db')
+const { Parser } = require('json2csv')
+const {
+  addPoints, addAqiMeasurement, getPm2524h, getLatestAqi,
+  ParticulatePoint, GasPoint, ClimatePoint
+} = require('./db')
 
 const savePoints = () => {
   return getPoints()
@@ -25,9 +29,29 @@ setInterval(savePoints, 1000 * 60 * 60)
 
 savePoints().then(() => saveAqi())
 
-require('express')()
-  .get('/aqi', async (_, res) => {
-    const latestAqi = await getLatestAqi()
-    res.json(latestAqi)
-  })
-  .listen(3001, () => console.log('> Server ready'))
+const app = require('express')()
+
+app.get('/aqi', async (_, res) => {
+  const latestAqi = await getLatestAqi()
+  res.json(latestAqi)
+})
+
+app.get('/data/particulates.csv', async (_, res) => {
+  const data = await ParticulatePoint.find()
+  const parser = new Parser({ fields: [ 'pm25', 'pm1', 'pm10', 'when' ] })
+  res.send(parser.parse(data))
+})
+
+app.get('/data/gases.csv', async (_, res) => {
+  const data = await GasPoint.find()
+  const parser = new Parser({ fields: [ 'c0', 'no2', 'o3', 'so2', 'when' ] })
+  res.send(parser.parse(data))
+})
+
+app.get('/data/climate.csv', async (_, res) => {
+  const data = await ClimatePoint.find()
+  const parser = new Parser({ fields: [ 'temperature', 'humidity', 'when' ] })
+  res.send(parser.parse(data))
+})
+
+app.listen(3001, () => console.log('> Server ready'))

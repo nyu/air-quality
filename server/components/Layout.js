@@ -1,5 +1,6 @@
 import Title from './Title'
 import Text from './Text'
+import Link from './Link'
 
 export default ({ children }) => {
   return (
@@ -15,6 +16,12 @@ export default ({ children }) => {
         NYU Shanghai Air Quality Monitoring Network <br/>
         Built by Caspar Lant, Felix Mattick, NYU Tandon Smart Sensors group, and Prof. Kevin Cromar <br/>
         Made possible by a Green Grant from the Office of Sustainability
+      </Text>
+
+      <Text>
+        <Link href='/api/csv/gases' download='gases.csv'>Download Gas CSV</Link><br />
+        <Link href='/api/csv/particulates' download='particulates.csv'>Download Particulates CSV</Link><br />
+        <Link href='/api/csv/climate' download='climate.csv'>Download Climate CSV</Link>
       </Text>
 
       <style jsx>{`

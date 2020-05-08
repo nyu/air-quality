@@ -28,7 +28,7 @@ const Page = ({ initialData, aqi }) => {
         data={data.particulates}
         keys={['pm2p5', 'pm1']}
         labels={['PM2.5', 'PM1']}
-        range={[0, 40]}
+        range={[0, 100]}
         formatter={formatPm}
       />
       <Plot
