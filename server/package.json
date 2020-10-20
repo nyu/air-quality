@@ -9,7 +9,7 @@
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.3",
-    "object-path": "^0.11.4",
+    "object-path": "^0.11.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-vis": "^1.11.7"
