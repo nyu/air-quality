@@ -1,6 +1,6 @@
 import Subtitle from './Subtitle'
 
-export default ({ title, id = undefined, children }) => {
+const Section = ({ title, id = undefined, children }) => {
   return (
     <section id={id}>
       <Subtitle>{title}</Subtitle>
@@ -14,3 +14,5 @@ export default ({ title, id = undefined, children }) => {
     </section>
   )
 }
+
+export default Section

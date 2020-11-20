@@ -1,6 +1,6 @@
 import Title from './Title'
 
-export default ({ children }) => {
+const SignageLayout = ({ children }) => {
   return (
     <main>
       <Title>Shanghai Air Quality</Title>
@@ -34,3 +34,5 @@ export default ({ children }) => {
     </main>
   )
 }
+
+export default SignageLayout

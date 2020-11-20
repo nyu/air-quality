@@ -31,7 +31,7 @@ $ cd ..
 
 Open three terminal sessions, one in the root folder, one in `server/`, and one in `worker/`.
 
-In the root folder run `docker-compose up db --build`.
+In the root folder run `docker-compose up --build db`.
 
 In `server/` simply run `yarn dev`.
 

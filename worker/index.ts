@@ -1,10 +1,8 @@
-const { getPoints } = require('./fetch')
-const { averagePoints, getAqiFromAverage } = require('./getPm25Aqi')
-const { Parser } = require('json2csv')
-const {
-  addPoints, addAqiMeasurement, getPm2524h, getLatestAqi,
-  ParticulatePoint, GasPoint, ClimatePoint
-} = require('./db')
+import { getPoints } from './fetch'
+import { Parser } from 'json2csv'
+import express from 'express'
+import { addPoints, addAqiMeasurement, getLatestAqi, ParticulatePoint, GasPoint, ClimatePoint } from './db'
+import { calculateAqi } from './aqi'
 
 const savePoints = () => {
   return getPoints()
@@ -13,15 +11,14 @@ const savePoints = () => {
     .catch(console.error)
 }
 
-const saveAqi = () => {
-  return getPm2524h()
-    .then((points) => {
-      const c = averagePoints(points)
-      const aqi = getAqiFromAverage(c)
-      return addAqiMeasurement(aqi, c)
-    })
-    .then(() => console.log('> AQI saved'))
-    .catch(console.error)
+const saveAqi = async () => {
+  try {
+    const aqi = await calculateAqi()
+    await addAqiMeasurement(aqi)
+    console.log('> AQI saved')
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 setInterval(saveAqi, 1000 * 60 * 5)
@@ -29,7 +26,7 @@ setInterval(savePoints, 1000 * 60 * 60)
 
 savePoints().then(() => saveAqi())
 
-const app = require('express')()
+const app = express()
 
 app.get('/aqi', async (_, res) => {
   const latestAqi = await getLatestAqi()

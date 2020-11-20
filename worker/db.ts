@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+import mongoose, { Schema } from 'mongoose'
+import { ParticulatePointDoc, GasPointDoc, ClimatePointDoc, AQIMeasurementDoc, Point, ParticulatesPointValue, ClimatePointValue, GasesPointValue } from './types'
 
 const host = process.env.NODE_ENV === 'production' ? 'db' : 'localhost'
 mongoose.connect(`mongodb://${host}:27017/airquality`, {
@@ -7,7 +8,7 @@ mongoose.connect(`mongodb://${host}:27017/airquality`, {
   useUnifiedTopology: true
 })
 
-const ParticulatePoint = mongoose.model('ParticulatePoint', {
+export const ParticulatePoint = mongoose.model<ParticulatePointDoc>('ParticulatePoint', new Schema({
   pm25: Number,
   pm1: Number,
   pm10: Number,
@@ -15,9 +16,9 @@ const ParticulatePoint = mongoose.model('ParticulatePoint', {
     type: Date,
     unique: true
   }
-})
+}))
 
-const GasPoint = mongoose.model('GasPoint', {
+export const GasPoint = mongoose.model<GasPointDoc>('GasPoint', new Schema({
   c0: Number,
   no2: Number,
   o3: Number,
@@ -26,19 +27,19 @@ const GasPoint = mongoose.model('GasPoint', {
     type: Date,
     unique: true
   }
-})
+}))
 
-const ClimatePoint = mongoose.model('ClimatePoint', {
+export const ClimatePoint = mongoose.model<ClimatePointDoc>('ClimatePoint', new Schema({
   temperature: Number,
   humidity: Number,
   when: {
     type: Date,
     unique: true
   }
-})
+}))
 
-module.exports.addPoints = async ({ particulates, climate, gases }) => {
-  const promises = []
+export const addPoints = async ({ particulates, climate, gases }: { particulates: Point<ParticulatesPointValue>[], climate: Point<ClimatePointValue>[], gases: Point<GasesPointValue>[] }) => {
+  const promises: Promise<unknown>[] = []
 
   for (let i = 0; i < particulates.length; i++) {
     const point = new ParticulatePoint({
@@ -73,37 +74,23 @@ module.exports.addPoints = async ({ particulates, climate, gases }) => {
   await Promise.all(promises)
 }
 
-module.exports.getPm2524h = async () => {
-  const start = new Date()
-  start.setDate(start.getDate() - 1)
-
-  return await ParticulatePoint.find({
-    when: { $gt: start }
-  }).select('pm25')
-}
-
-const AQIMeasurement = mongoose.model('AQIMeasurement', {
+const AQIMeasurement = mongoose.model<AQIMeasurementDoc>('AQIMeasurement', new Schema({
   value: Number,
-  averagePm25: Number,
   when: {
     type: Date,
     unique: true
   }
-})
+}))
 
-module.exports.addAqiMeasurement = async (value, averagePm25) => {
+export const addAqiMeasurement = async (value: number) => {
   const point = new AQIMeasurement({
-    value, averagePm25,
+    value,
     when: new Date()
   })
   await point.save()
 }
 
-module.exports.getLatestAqi = async () => {
+export const getLatestAqi = async () => {
   const point = await AQIMeasurement.findOne().sort({ when: -1 })
   return point
 }
-
-module.exports.ParticulatePoint = ParticulatePoint
-module.exports.GasPoint = GasPoint
-module.exports.ClimatePoint = ClimatePoint

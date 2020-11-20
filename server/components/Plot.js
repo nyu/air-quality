@@ -21,7 +21,9 @@ const aurora = [
   '#55a7d6'
 ]
 
-export default ({ data, keys, range, padding, auroraOffset = 0, formatter = (v) => v, labels = keys, height = 330 }) => {
+const Plot = (
+  { data, keys, range, padding, auroraOffset = 0, formatter = (v) => v, labels = keys, height = 330 }
+) => {
   const [hovered, setHovered] = useState([])
   const setHoveredIndex = useDebouncedishCallback((index) => {
     console.log('fdsfds', index)
@@ -125,3 +127,5 @@ export default ({ data, keys, range, padding, auroraOffset = 0, formatter = (v) 
     `}</style>
   </div>)
 }
+
+export default Plot

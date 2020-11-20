@@ -2,7 +2,7 @@ import Title from './Title'
 import Text from './Text'
 import Link from './Link'
 
-export default ({ children }) => {
+const Layout = ({ children }) => {
   return (
     <main>
       <title>NYU Shanghai Live Air Quality Data Dashboard</title>
@@ -51,3 +51,5 @@ export default ({ children }) => {
     </main>
   )
 }
+
+export default Layout

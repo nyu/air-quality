@@ -1,19 +1,18 @@
-const fetch = require('node-fetch')
+import fetch from 'node-fetch'
+import { GetPointValue, Point, PointType } from './types'
 
-const types = [
-  'particulates',
-  'climate',
-  'gases'
-]
-
-module.exports.getPoints = async () => {
+export const getPoints = async () => {
   const end = new Date()
   const start = new Date(end)
   start.setHours(start.getHours() - 2)
 
-  const data = {}
+  const data: { [key in PointType]: Point<GetPointValue<key>>[] } = {
+    particulates: [],
+    gases: [],
+    climate: []
+  }
 
-  await Promise.all(types.map((type) => (async () => {
+  await Promise.all(Object.values(PointType).map((type) => (async () => {
     const res = await fetch(`https://aws.southcoastscience.com/topicMessages?topic=${
       encodeURIComponent(`nyu/shanghai/loc/1/${type}`)
       }&startTime=${
@@ -22,6 +21,7 @@ module.exports.getPoints = async () => {
       encodeURIComponent(end.toISOString())
       }`)
     const json = await res.json()
+
     data[type] = json.Items
   })()))
 
