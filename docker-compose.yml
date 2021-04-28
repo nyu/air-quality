@@ -14,7 +14,11 @@ services:
     restart: always
     ports:
       - 80:3000
+    environment:
+      - SCS_KEY
       
   worker:
     build: ./worker
     restart: always
+    environment:
+      - SCS_KEY

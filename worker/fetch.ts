@@ -19,7 +19,9 @@ export const getPoints = async () => {
       encodeURIComponent(start.toISOString())
       }&endTime=${
       encodeURIComponent(end.toISOString())
-      }`)
+      }`, {
+        'authorization': `api-key ${process.env.SCS_KEY}`
+      })
     const json = await res.json()
 
     data[type] = json.Items
