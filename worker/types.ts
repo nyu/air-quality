@@ -33,16 +33,9 @@ export enum PointType {
 }
 
 export interface Point<ValueType extends PointValue> {
-  expire_at: number,
-  upload: string,
-  payload: {
-    val: ValueType,
-    rec: string,
-    tag: string
-  },
-  topic: string,
-  device: string,
-  rec_at: string
+  val: ValueType,
+  rec: string,
+  tag: string
 }
 
 export interface ParticulatesPointValue {

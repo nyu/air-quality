@@ -43,30 +43,30 @@ export const addPoints = async ({ particulates, climate, gases }: { particulates
 
   for (let i = 0; i < particulates.length; i++) {
     const point = new ParticulatePoint({
-      pm25: particulates[i].payload.val.pm2p5,
-      pm1: particulates[i].payload.val.pm1,
-      pm10: particulates[i].payload.val.pm10,
-      when: Date.parse(particulates[i].payload.rec)
+      pm25: particulates[i].val.pm2p5,
+      pm1: particulates[i].val.pm1,
+      pm10: particulates[i].val.pm10,
+      when: Date.parse(particulates[i].rec)
     })
     promises.push(point.save().catch(() => null))
   }
 
   for (let i = 0; i < climate.length; i++) {
     const point = new ClimatePoint({
-      temperature: climate[i].payload.val.tmp,
-      humidity: climate[i].payload.val.hmd,
-      when: Date.parse(climate[i].payload.rec)
+      temperature: climate[i].val.tmp,
+      humidity: climate[i].val.hmd,
+      when: Date.parse(climate[i].rec)
     })
     promises.push(point.save().catch(() => null))
   }
 
   for (let i = 0; i < gases.length; i++) {
     const point = new GasPoint({
-      co: gases[i].payload.val.CO.cnc,
-      no2: gases[i].payload.val.NO2.cnc,
-      o3: gases[i].payload.val.Ox.cnc,
-      so2: gases[i].payload.val.SO2.cnc,
-      when: Date.parse(gases[i].payload.rec)
+      co: gases[i].val.CO.cnc,
+      no2: gases[i].val.NO2.cnc,
+      o3: gases[i].val.Ox.cnc,
+      so2: gases[i].val.SO2.cnc,
+      when: Date.parse(gases[i].rec)
     })
     promises.push(point.save().catch(() => null))
   }
