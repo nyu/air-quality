@@ -31,8 +31,8 @@ const Plot = (
     const c = data[index]
     setHovered(keys.map(
       (key) => objectPath.get({
-        x: Date.parse(c.payload.rec),
-        y: objectPath.get(c.payload.val, key)
+        x: Date.parse(c.rec),
+        y: objectPath.get(c.val, key)
       })
     ))
   })
@@ -61,8 +61,8 @@ const Plot = (
           className={`series-${index}`}
           data={data.reduce((p, c) => {
             p.push({
-              x: Date.parse(c.payload.rec),
-              y: objectPath.get(c.payload.val, key)
+              x: Date.parse(c.rec),
+              y: objectPath.get(c.val, key)
             })
             return p
           }, [])}

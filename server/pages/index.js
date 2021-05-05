@@ -8,6 +8,7 @@ import fetchData from '../lib/fetchData'
 import fetchAqi from '../lib/fetchAqi'
 import useData from '../lib/useData'
 import getAqiInfo from '../lib/getAqiInfo'
+import { useEffect } from 'react'
 
 import Text from '../components/Text'
 import Layout from '../components/Layout'
@@ -16,6 +17,10 @@ import Plot from '../components/Plot'
 
 const Page = ({ initialData, aqi }) => {
   const data = useData(initialData)
+  useEffect(() => {
+    console.log({ data, initialData })
+  }, [ initialData, data ])
+
   const aqiInfo = getAqiInfo(aqi)
 
   return (<Layout>
