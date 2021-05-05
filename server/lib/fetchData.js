@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch'
 
 const prefix = process.env.NODE_ENV === 'production'
-  ? 'https://airquality.engineering.nyu.edu'
+  ? 'http://airquality.engineering.nyu.edu'
   : 'http://localhost:3000'
 
 export default async () => {
