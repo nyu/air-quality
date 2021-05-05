@@ -9,7 +9,7 @@ const types = [
 export default async (_, res) => {
   const end = new Date() // End date is current date
   const start = new Date(end) // Copy end date to start date
-  start.setHours(start.getHours() - 2) // Turn start date back two hours
+  start.setHours(start.getHours() - 12) // Turn start date back 12 hours
 
   const data = {}
 
