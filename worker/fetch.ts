@@ -14,7 +14,7 @@ export const getPoints = async () => {
 
   await Promise.all(Object.values(PointType).map((type) => (async () => {
     const res = await fetch(`https://aws.southcoastscience.com/topicMessages?topic=${
-      encodeURIComponent(`nyu/shanghai/loc/1/${type}`)
+      encodeURIComponent(`nyu/brooklyn/loc/3/${type}`)
       }&startTime=${
       encodeURIComponent(start.toISOString())
       }&endTime=${
